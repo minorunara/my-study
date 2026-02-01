@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>ANS-C01 topic 1 question 5 discussion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+        }
+
+        .header h1 {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+
+        .question-section {
+            padding: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .question-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            white-space: pre-line;
+        }
+
+        .choices {
+            list-style: none;
+        }
+
+        .choice-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-left: 4px solid #6c757d;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .choice-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .choice-item.correct {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        .choice-letter {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #6c757d;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .choice-item.correct .choice-letter {
+            background: #28a745;
+        }
+
+        .answer-section {
+            padding: 20px;
+            background: #e7f3ff;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .answer-section h2 {
+            color: #0066cc;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .correct-answer {
+            font-size: 1.5em;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .vote-stats {
+            margin-top: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+        }
+
+        .vote-bar {
+            display: flex;
+            height: 30px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .vote-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .comments-section {
+            padding: 20px;
+        }
+
+        .comments-section h2 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #495057;
+        }
+
+        .comment {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #007bff;
+        }
+
+        .comment.highly-voted {
+            border-left-color: #ffc107;
+            background: #fff9e6;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .comment-username {
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .comment-badge {
+            background: #ffc107;
+            color: #000;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .comment-upvotes {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .comment-content {
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+
+        .toggle-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 20px 0;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            background: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 5px;
+            }
+
+            .header {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 1.1em;
+            }
+
+            .question-section, .answer-section, .comments-section {
+                padding: 15px;
+            }
+
+            .choice-item {
+                padding: 12px;
+            }
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            background: #0056b3;
+        }
+
+        .nav-btn.disabled {
+            background: #6c757d;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-btn.home-btn {
+            background: #28a745;
+        }
+
+        .nav-btn.home-btn:hover {
+            background: #218838;
+        }
+
+        @media (max-width: 600px) {
+            .navigation {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <script>if(sessionStorage.getItem("authenticated")!=="true"){window.location.href="../../index.html";}</script>
+    <div class="container">
+        <div class="header">
+            <h1>ANS-C01 topic 1 question 5 discussion</h1>
+        </div>
+
+        <div class="question-section">
+            <div class="question-text">A company uses a 4 Gbps AWS Direct Connect dedicated connection with a link aggregation group (LAG) bundle to connect to five VPCs that are deployed in the us-east-1 Region. Each VPC serves a different business unit and uses its own private VIF for connectivity to the on-premises environment. Users are reporting slowness when they access resources that are hosted on AWS.A network engineer finds that there are sudden increases in throughput and that the Direct Connect connection becomes saturated at the same time for about an hour each business day. The company wants to know which business unit is causing the sudden increase in throughput. The network engineer must find out this information and implement a solution to resolve the problem.Which solution will meet these requirements?</div>
+
+            <ul class="choices">
+                <li class="choice-item">
+                    <span class="choice-letter">A</span>
+                    Review the Amazon CloudWatch metrics for VirtualInterfaceBpsEgress and VirtualInterfaceBpsIngress to determine which VIF is sending the highest throughput during the period in which slowness is observed. Create a new 10 Gbps dedicated connection. Shift traffic from the existing dedicated connection to the new dedicated connection.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">B</span>
+                    Review the Amazon CloudWatch metrics for VirtualInterfaceBpsEgress and VirtualInterfaceBpsIngress to determine which VIF is sending the highest throughput during the period in which slowness is observed. Upgrade the bandwidth of the existing dedicated connection to 10 Gbps.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">C</span>
+                    Review the Amazon CloudWatch metrics for ConnectionBpsIngress and ConnectionPpsEgress to determine which VIF is sending the highest throughput during the period in which slowness is observed. Upgrade the existing dedicated connection to a 5 Gbps hosted connection.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">D</span>
+                    Review the Amazon CloudWatch metrics for ConnectionBpsIngress and ConnectionPpsEgress to determine which VIF is sending the highest throughput during the period in which slowness is observed. Create a new 10 Gbps dedicated connection. Shift traffic from the existing dedicated connection to the new dedicated connection.
+                </li>
+            </ul>
+
+            <button class="toggle-btn" onclick="toggleAnswer()">正解を表示</button>
+        </div>
+
+        <div class="answer-section hidden" id="answer-section">
+            <h2>正解</h2>
+            <div class="correct-answer">A</div>
+            
+            <div class="vote-stats">
+                <strong>コミュニティ投票（計 28 票）</strong>
+                <div class="vote-bar">
+                    <div class="vote-segment" style="width: 82.0%; background: #007bff;">A (82%)</div><div class="vote-segment" style="width: 18.0%; background: #17a2b8;">B (18%)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comments-section hidden" id="comments-section">
+            <h2>主要なディスカッション</h2>
+            <div class="comment highly-voted">
+                <div class="comment-header">
+                    <span class="comment-username">bogehad181</span>
+                    <span class="comment-badge">Highly Voted</span>
+                    <span class="comment-upvotes">👍 10 votes</span>
+                </div>
+                <div class="comment-content">A, can&#x27;t upgrade DX</div>
+            </div>
+            <div class="comment highly-voted">
+                <div class="comment-header">
+                    <span class="comment-username">that1guy</span>
+                    <span class="comment-badge">Highly Voted</span>
+                    <span class="comment-upvotes">👍 7 votes</span>
+                </div>
+                <div class="comment-content">A,
+From: https://docs.aws.amazon.com/directconnect/latest/UserGuide/dedicated_connection.html
+&gt; &quot;You cannot change the port speed after you create the connection request. To change the port speed, you must create and configure a new connection.&quot;</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Untamables</span>
+                    
+                    <span class="comment-upvotes">👍 3 votes</span>
+                </div>
+                <div class="comment-content">A
+The company has configured the Direct Connect connection stacked with LAG like the below AWS document in this scenario. It seems that there are 4 1-GB dedicated connections.
+https://docs.aws.amazon.com/directconnect/latest/UserGuide/lags.html
+
+Hence, you must monitor the entire traffic, not each dedicated connection traffic. Option C and D are wrong for this reason.
+https://docs.aws.amazon.com/directconnect/latest/UserGuide/monitoring-cloudwatch.html
+
+Option B is wrong. To change the port speed, you must create and configure a new connection.
+https://docs.aws.amazon.com/directconnect/latest/UserGuide/dedicated_connection.html</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">ranac</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">since the company is already using a 4 Gbps Direct Connect dedicated connection with a LAG bundle, upgrading the bandwidth of the existing dedicated connection to 10 Gbps will be a more cost-effective solution than creating a new 10 Gbps dedicated connection.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">slackbot</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">Obviously - DX connections cannot be upgraded. They can migrate the VIFs to the new DX conn</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">SIX</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">A-Correct Answer
+In AWS Direct Connect, you cannot upgrade an existing 4 x 1Gbps connection to a 10Gbps connection. Instead, you will need to create a new 10Gbps connection and move the traffic to the new connection.
+https://repost.aws/questions/QUxprf4oUTRHyvs-SylrzNRw/can-aws-direct-connect-ports-be-upgraded-from-1-gbps-to-10-gbps.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">flowers00</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">A - correct.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">clphan</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">Option A,
+- From https://docs.aws.amazon.com/directconnect/latest/UserGuide/dedicated_connection.html, you can&#x27;t upgrade the current port speed.
+hosted connection support 1, 10, 100, 400. Current LAG 4GBPS mean that 4 connection / LAG =&gt; If need 10 seem need create a new because LAG require same port speed.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Raphaello</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">A is the correct answer.
+Need to create a new DX connection with the new speed.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">patanjali</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">Answer is A
+
+https://aws.amazon.com/blogs/networking-and-content-delivery/upgrading-aws-direct-connect-to-100-gbps-in-5-steps/</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Marfee400704</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">I think that it&#x27;s correct answer is A according to SPOTO products.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">marfee</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">I think that it&#x27;s correcty answer is A.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">MEDES</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">A,
+From: https://docs.aws.amazon.com/directconnect/latest/UserGuide/dedicated_connection.html
+&gt; &quot;You cannot change the port speed after you create the connection request. To change the port speed, you must create and configure a new connection.&quot;</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">emmanuelodenyire</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">Option B suggests upgrading the bandwidth of the existing dedicated connection to 10 Gbps after reviewing the CloudWatch metrics for VirtualInterfaceBpsEgress and VirtualInterfaceBpsIngress to determine which VIF is sending the highest throughput during the period of slowness. This solution would help identify which VIF is causing the problem and increase the bandwidth to alleviate the issue.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">gpt_test</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">By reviewing the Amazon CloudWatch metrics for VirtualInterfaceBpsEgress and VirtualInterfaceBpsIngress, the network engineer can identify which VIF is causing the sudden increase in throughput. Upgrading the bandwidth of the existing dedicated connection to 10 Gbps will help mitigate the issue of slowness due to saturation, ensuring that resources hosted on AWS can be accessed more efficiently.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">ITgeek</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">AWS Direct Connect offers different port speeds, including 1 Gbps, 10 Gbps, and 100 Gbps. If you are currently using a 4 Gbps connection, it means you are likely using a 10 Gbps connection, but it is provisioned at 4 Gbps.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">study_aws1</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">A is correct.
+However, the apprpriate parameter will be VirtualInterfacePpsEgress and VirtualInterfacePpsIngress, as it is related to packet rate i.e. throughput</div>
+            </div>
+        </div>
+    <div class="navigation">
+    <a href="question-004.html" class="nav-btn prev-btn">← 前の問題</a>
+    <a href="../../index.html" class="nav-btn home-btn">📋 目次</a>
+    <a href="question-006.html" class="nav-btn next-btn">次の問題 →</a>
+</div>
+    </div>
+
+    <script>
+        let answerVisible = false;
+
+        function toggleAnswer() {
+            const answerSection = document.getElementById('answer-section');
+            const commentsSection = document.getElementById('comments-section');
+            const btn = document.querySelector('.toggle-btn');
+            const correctLetter = 'A';
+
+            answerVisible = !answerVisible;
+
+            if (answerVisible) {
+                answerSection.classList.remove('hidden');
+                commentsSection.classList.remove('hidden');
+                btn.textContent = '正解を隠す';
+
+                // 正解の選択肢をハイライト (複数選択に対応: "DEF" → ['D','E','F'])
+                const correctLetters = correctLetter.split('');
+                document.querySelectorAll('.choice-item').forEach(item => {
+                    const letter = item.querySelector('.choice-letter').textContent.trim();
+                    if (correctLetters.includes(letter)) {
+                        item.classList.add('correct');
+                    }
+                });
+            } else {
+                answerSection.classList.add('hidden');
+                commentsSection.classList.add('hidden');
+                btn.textContent = '正解を表示';
+
+                // ハイライトを削除
+                document.querySelectorAll('.choice-item').forEach(item => {
+                    item.classList.remove('correct');
+                });
+            }
+        }
+    </script>
+</body>
+</html>

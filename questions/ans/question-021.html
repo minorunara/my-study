@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>ANS-C01 topic 1 question 21 discussion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+        }
+
+        .header h1 {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+
+        .question-section {
+            padding: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .question-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            white-space: pre-line;
+        }
+
+        .choices {
+            list-style: none;
+        }
+
+        .choice-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-left: 4px solid #6c757d;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .choice-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .choice-item.correct {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        .choice-letter {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #6c757d;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .choice-item.correct .choice-letter {
+            background: #28a745;
+        }
+
+        .answer-section {
+            padding: 20px;
+            background: #e7f3ff;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .answer-section h2 {
+            color: #0066cc;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .correct-answer {
+            font-size: 1.5em;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .vote-stats {
+            margin-top: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+        }
+
+        .vote-bar {
+            display: flex;
+            height: 30px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .vote-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .comments-section {
+            padding: 20px;
+        }
+
+        .comments-section h2 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #495057;
+        }
+
+        .comment {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #007bff;
+        }
+
+        .comment.highly-voted {
+            border-left-color: #ffc107;
+            background: #fff9e6;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .comment-username {
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .comment-badge {
+            background: #ffc107;
+            color: #000;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .comment-upvotes {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .comment-content {
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+
+        .toggle-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 20px 0;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            background: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 5px;
+            }
+
+            .header {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 1.1em;
+            }
+
+            .question-section, .answer-section, .comments-section {
+                padding: 15px;
+            }
+
+            .choice-item {
+                padding: 12px;
+            }
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            background: #0056b3;
+        }
+
+        .nav-btn.disabled {
+            background: #6c757d;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-btn.home-btn {
+            background: #28a745;
+        }
+
+        .nav-btn.home-btn:hover {
+            background: #218838;
+        }
+
+        @media (max-width: 600px) {
+            .navigation {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <script>if(sessionStorage.getItem("authenticated")!=="true"){window.location.href="../../index.html";}</script>
+    <div class="container">
+        <div class="header">
+            <h1>ANS-C01 topic 1 question 21 discussion</h1>
+        </div>
+
+        <div class="question-section">
+            <div class="question-text">A company’s network engineer needs to design a new solution to help troubleshoot and detect network anomalies. The network engineer has configured Traffic Mirroring. However, the mirrored traffic is overwhelming the Amazon EC2 instance that is the traffic mirror target. The EC2 instance hosts tools that the company’s security team uses to analyze the traffic. The network engineer needs to design a highly available solution that can scale to meet the demand of the mirrored traffic.Which solution will meet these requirements?</div>
+
+            <ul class="choices">
+                <li class="choice-item">
+                    <span class="choice-letter">A</span>
+                    Deploy a Network Load Balancer (NLB) as the traffic mirror target. Behind the NLB. deploy a fleet of EC2 instances in an Auto Scaling group. Use Traffic Mirroring as necessary.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">B</span>
+                    Deploy an Application Load Balancer (ALB) as the traffic mirror target. Behind the ALB, deploy a fleet of EC2 instances in an Auto Scaling group. Use Traffic Mirroring only during non-business hours.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">C</span>
+                    Deploy a Gateway Load Balancer (GLB) as the traffic mirror target. Behind the GLB. deploy a fleet of EC2 instances in an Auto Scaling group. Use Traffic Mirroring as necessary.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">D</span>
+                    Deploy an Application Load Balancer (ALB) with an HTTPS listener as the traffic mirror target. Behind the ALB. deploy a fleet of EC2 instances in an Auto Scaling group. Use Traffic Mirroring only during active events or business hours.
+                </li>
+            </ul>
+
+            <button class="toggle-btn" onclick="toggleAnswer()">正解を表示</button>
+        </div>
+
+        <div class="answer-section hidden" id="answer-section">
+            <h2>正解</h2>
+            <div class="correct-answer">A</div>
+            
+            <div class="vote-stats">
+                <strong>コミュニティ投票（計 81 票）</strong>
+                <div class="vote-bar">
+                    <div class="vote-segment" style="width: 64.0%; background: #007bff;">A (64%)</div><div class="vote-segment" style="width: 36.0%; background: #17a2b8;">C (36%)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comments-section hidden" id="comments-section">
+            <h2>主要なディスカッション</h2>
+            <div class="comment highly-voted">
+                <div class="comment-header">
+                    <span class="comment-username">Cheam</span>
+                    <span class="comment-badge">Highly Voted</span>
+                    <span class="comment-upvotes">👍 19 votes</span>
+                </div>
+                <div class="comment-content">Another tricky question and consider the wording in the answers choices - &quot;as the traffic mirror target&quot;. 
+
+I have selected A because the NLB is a valid mirror target, but the GWLB is not (Answer C).  Yes, comments supporting Answer C say that GWLB must also mean/include GLWB-E. Then you have two valid answers to the question where you can only select one.
+
+Therefore, it is A for me.
+
+Ref: https://docs.aws.amazon.com/vpc/latest/mirroring/traffic-mirroring-targets.html
+
+All the best.</div>
+            </div>
+            <div class="comment highly-voted">
+                <div class="comment-header">
+                    <span class="comment-username">dremm</span>
+                    <span class="comment-badge">Highly Voted</span>
+                    <span class="comment-upvotes">👍 16 votes</span>
+                </div>
+                <div class="comment-content">C) Makes more sense for the updated exam, GWLB is relatively new. 
+
+Read the release post for GWLB - https://aws.amazon.com/about-aws/whats-new/2022/05/amazon-vps-traffic-mirroring-supports-sending-mirrored-traffic-gateway-load-balancer-backed-monitoring-appliances/ 
+&quot;This helps simplify the monitoring of network traffic across AWS accounts and VPCs in a highly scalable and operationally efficient manner by removing routing complexity and operational overhead.&quot;</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">btech24</span>
+                    
+                    <span class="comment-upvotes">👍 3 votes</span>
+                </div>
+                <div class="comment-content">Answer is A, 
+Gateway Load Balancer is not a valid traffic mirror target. There are 3 valid traffic mirror endpoints
+
+1. Network Interface
+2. Network Load Balancer
+3. Gateway Load Balancer endpoints
+ref https://docs.aws.amazon.com/vpc/latest/mirroring/traffic-mirroring-targets.html</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">AmSpOkE</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">Answer is A as GWLB (which could be a good answer) is not a valid target for a mirroring.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">RavikantKumarRavi</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">NLB incase of EC2 and  GLB incase of security appliance as destination or target</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">jyrajan69</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">It depends on when you answered this question because based on the latest the answer is C
+https://docs.aws.amazon.com/vpc/latest/mirroring/traffic-mirroring-how-it-works.html</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">AzureDP900</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">A is right 
+To create a highly available solution that can scale to handle mirrored traffic while minimizing the impact on the EC2 instance hosting tools for analyzing traffic, we should use a load balancer to distribute the mirrored traffic across multiple instances.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Spaurito</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">C - A listener for Gateway Load Balancers listens for all IP packets across all ports, and then forwards traffic to the target group.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">AlirezaNetWorld</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">The right answer is C without any doubts...</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">kourosh</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">A is the correct answer: https://docs.aws.amazon.com/vpc/latest/mirroring/traffic-mirroring-targets.html</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Jonalb</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">A is correct!</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Raphaello</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">I&#x27;d go with A.
+Valid traffic mirror targets include &quot;GWLB ENDPOINTS&quot;..for this, I&#x27;d go with A.
+
+
+Traffic mirror target concepts
+A traffic mirror target is the destination for mirrored traffic.
+You can use the following resources as traffic mirror targets:
+      Network interfaces of type interface
+      Network Load Balancers
+      Gateway Load Balancer endpoints &lt;&lt;&lt;&lt;
+
+https://docs.aws.amazon.com/vpc/latest/mirroring/traffic-mirroring-targets.html</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">patanjali</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">GWLB cant be the answer as you will need Firewall behind GWLB which understand GENEVE. Simple and BEst solution is to use NLB with TCP/UDP listner</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">ogrefighter</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">GLB operates at Layer 3.  NLB operates at Layer 4 -- so an NLB cannot be directly the target of GLB.  Simplest answer is A   https://aws.amazon.com/compare/the-difference-between-the-difference-between-application-network-and-gateway-load-balancing/#:~:text=An%20NLB%20operates%20on%20layer,on%20ports%20and%20IP%20addresses.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Marfee400704</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">I think that its correct answer is A according to SPOTO products.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">marfee</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">I think that it&#x27;s correcty answer is A.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Snape</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">Option B and D involvea ALB, which is suited for web applications and layer 7 traffic. In this scenario, primary goal is to handle mirrored traffic, therefore NLB is a better fit. Option C GLB is designed for different usecases and doesnt make sense here</div>
+            </div>
+        </div>
+    <div class="navigation">
+    <a href="question-020.html" class="nav-btn prev-btn">← 前の問題</a>
+    <a href="../../index.html" class="nav-btn home-btn">📋 目次</a>
+    <a href="question-022.html" class="nav-btn next-btn">次の問題 →</a>
+</div>
+    </div>
+
+    <script>
+        let answerVisible = false;
+
+        function toggleAnswer() {
+            const answerSection = document.getElementById('answer-section');
+            const commentsSection = document.getElementById('comments-section');
+            const btn = document.querySelector('.toggle-btn');
+            const correctLetter = 'A';
+
+            answerVisible = !answerVisible;
+
+            if (answerVisible) {
+                answerSection.classList.remove('hidden');
+                commentsSection.classList.remove('hidden');
+                btn.textContent = '正解を隠す';
+
+                // 正解の選択肢をハイライト (複数選択に対応: "DEF" → ['D','E','F'])
+                const correctLetters = correctLetter.split('');
+                document.querySelectorAll('.choice-item').forEach(item => {
+                    const letter = item.querySelector('.choice-letter').textContent.trim();
+                    if (correctLetters.includes(letter)) {
+                        item.classList.add('correct');
+                    }
+                });
+            } else {
+                answerSection.classList.add('hidden');
+                commentsSection.classList.add('hidden');
+                btn.textContent = '正解を表示';
+
+                // ハイライトを削除
+                document.querySelectorAll('.choice-item').forEach(item => {
+                    item.classList.remove('correct');
+                });
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>ANS-C01 topic 1 question 56 discussion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+        }
+
+        .header h1 {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+
+        .question-section {
+            padding: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .question-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            white-space: pre-line;
+        }
+
+        .choices {
+            list-style: none;
+        }
+
+        .choice-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-left: 4px solid #6c757d;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .choice-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .choice-item.correct {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        .choice-letter {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #6c757d;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .choice-item.correct .choice-letter {
+            background: #28a745;
+        }
+
+        .answer-section {
+            padding: 20px;
+            background: #e7f3ff;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .answer-section h2 {
+            color: #0066cc;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .correct-answer {
+            font-size: 1.5em;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .vote-stats {
+            margin-top: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+        }
+
+        .vote-bar {
+            display: flex;
+            height: 30px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .vote-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .comments-section {
+            padding: 20px;
+        }
+
+        .comments-section h2 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #495057;
+        }
+
+        .comment {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #007bff;
+        }
+
+        .comment.highly-voted {
+            border-left-color: #ffc107;
+            background: #fff9e6;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .comment-username {
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .comment-badge {
+            background: #ffc107;
+            color: #000;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .comment-upvotes {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .comment-content {
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+
+        .toggle-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 20px 0;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            background: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 5px;
+            }
+
+            .header {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 1.1em;
+            }
+
+            .question-section, .answer-section, .comments-section {
+                padding: 15px;
+            }
+
+            .choice-item {
+                padding: 12px;
+            }
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            background: #0056b3;
+        }
+
+        .nav-btn.disabled {
+            background: #6c757d;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-btn.home-btn {
+            background: #28a745;
+        }
+
+        .nav-btn.home-btn:hover {
+            background: #218838;
+        }
+
+        @media (max-width: 600px) {
+            .navigation {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <script>if(sessionStorage.getItem("authenticated")!=="true"){window.location.href="../../index.html";}</script>
+    <div class="container">
+        <div class="header">
+            <h1>ANS-C01 topic 1 question 56 discussion</h1>
+        </div>
+
+        <div class="question-section">
+            <div class="question-text">A company is running multiple workloads on Amazon EC2 instances in public subnets. In a recent incident, an attacker exploited an application vulnerability on one of the EC2 instances to gain access to the instance. The company fixed the application and launched a replacement EC2 instance that contains the updated application.The attacker used the compromised application to spread malware over the internet. The company became aware of the compromise through a notification from AWS. The company needs the ability to identify when an application that is deployed on an EC2 instance is spreading malware.Which solution will meet this requirement with the LEAST operational effort?</div>
+
+            <ul class="choices">
+                <li class="choice-item">
+                    <span class="choice-letter">A</span>
+                    Use Amazon GuardDuty to analyze traffic patterns by inspecting DNS requests and VPC flow logs.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">B</span>
+                    Use Amazon GuardDuty to deploy AWS managed decoy systems that are equipped with the most recent malware signatures.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">C</span>
+                    Set up a Gateway Load Balancer. Run an intrusion detection system (IDS) appliance from AWS Marketplace on Amazon EC2 for traffic inspection.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">D</span>
+                    Configure Amazon Inspector to perform deep packet inspection of outgoing traffic.
+                </li>
+            </ul>
+
+            <button class="toggle-btn" onclick="toggleAnswer()">正解を表示</button>
+        </div>
+
+        <div class="answer-section hidden" id="answer-section">
+            <h2>正解</h2>
+            <div class="correct-answer">A</div>
+            
+            <div class="vote-stats">
+                <strong>コミュニティ投票（計 18 票）</strong>
+                <div class="vote-bar">
+                    <div class="vote-segment" style="width: 89.0%; background: #007bff;">A (89%)</div><div class="vote-segment" style="width: 11.0%; background: #17a2b8;">11%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comments-section hidden" id="comments-section">
+            <h2>主要なディスカッション</h2>
+            <div class="comment highly-voted">
+                <div class="comment-header">
+                    <span class="comment-username">ITgeek</span>
+                    <span class="comment-badge">Highly Voted</span>
+                    <span class="comment-upvotes">👍 10 votes</span>
+                </div>
+                <div class="comment-content">the emphasis is on the efforts to stand out a solution, that is where guarduty can help in identify</div>
+            </div>
+            <div class="comment highly-voted">
+                <div class="comment-header">
+                    <span class="comment-username">zaazanuna</span>
+                    <span class="comment-badge">Highly Voted</span>
+                    <span class="comment-upvotes">👍 10 votes</span>
+                </div>
+                <div class="comment-content">A - correct.
+
+This solution involves using Amazon GuardDuty to monitor network traffic and analyze DNS requests and VPC flow logs for suspicious activity. This will allow the company to identify when an application is spreading malware by monitoring the network traffic patterns associated with the instance. GuardDuty is a fully managed threat detection service that continuously monitors for malicious activity and unauthorized behavior in your AWS accounts and workloads. It requires minimal setup and configuration and can be integrated with other AWS services for automated remediation. This solution requires the least operational effort compared to the other options</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">helloworldabc</span>
+                    
+                    <span class="comment-upvotes">👍 3 votes</span>
+                </div>
+                <div class="comment-content">AAAAAAAAAAAA</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">woorkim</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">A
+B. AWS managed decoy systems (honeypots) are not the most appropriate or least effort solution for identifying malware spread from EC2 instances.
+C. Gateway Load Balancer with an IDS appliance from AWS Marketplace is a more complex setup, requiring manual configuration, management, and scaling.
+D. Amazon Inspector is primarily focused on vulnerability assessments rather than inspecting outgoing traffic for malware.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Raphaello</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">GuardDuty is AWS intelligent threat detection, which I think the answer to the ask in this scenario.
+However, option C (GWLB + IDS) is not entirely wrong, apart from &quot;operational effort&quot; part.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">silviahdz</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">A is the right choice as it requires less effort.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">dremm</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">C is correct. 
+
+Although GuardDuty can detect malware infected machines, it cannot prevent spreading. This options requires Malware Protection to be enabled on GuardDuty which is not mentioned in the answers. DNS queries and VPC flow logs will not help in detecting malware spread. 
+
+C is the most logical answer here.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">AzureDP900</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">Amazon GuardDuty is a service that analyzes network traffic patterns and detects malicious activity in real-time. It can be configured to inspect DNS requests and VPC flow logs, which would provide the necessary visibility into applications running on EC2 instances.
+
+By using Amazon GuardDuty, the company can identify potential malware-related activity without having to implement additional infrastructure or configuration changes. This solution requires minimal operational effort as it leverages an existing AWS service.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">patanjali</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">LEAST operational effort is only using GuardDuty. 
+
+GWLB option is another way to do this too but that involve lots of operational overhead and lots of config/routing change.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">marfee</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">I think that it&#x27;s correct answer is A.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">JoseCC</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">A - correct
+https://aws.amazon.com/blogs/aws/new-for-amazon-guardduty-malware-detection-for-amazon-ebs-volumes/</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Mishranihal737</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">Yes correct answer is A</div>
+            </div>
+        </div>
+    <div class="navigation">
+    <a href="question-055.html" class="nav-btn prev-btn">← 前の問題</a>
+    <a href="../../index.html" class="nav-btn home-btn">📋 目次</a>
+    <a href="question-057.html" class="nav-btn next-btn">次の問題 →</a>
+</div>
+    </div>
+
+    <script>
+        let answerVisible = false;
+
+        function toggleAnswer() {
+            const answerSection = document.getElementById('answer-section');
+            const commentsSection = document.getElementById('comments-section');
+            const btn = document.querySelector('.toggle-btn');
+            const correctLetter = 'A';
+
+            answerVisible = !answerVisible;
+
+            if (answerVisible) {
+                answerSection.classList.remove('hidden');
+                commentsSection.classList.remove('hidden');
+                btn.textContent = '正解を隠す';
+
+                // 正解の選択肢をハイライト (複数選択に対応: "DEF" → ['D','E','F'])
+                const correctLetters = correctLetter.split('');
+                document.querySelectorAll('.choice-item').forEach(item => {
+                    const letter = item.querySelector('.choice-letter').textContent.trim();
+                    if (correctLetters.includes(letter)) {
+                        item.classList.add('correct');
+                    }
+                });
+            } else {
+                answerSection.classList.add('hidden');
+                commentsSection.classList.add('hidden');
+                btn.textContent = '正解を表示';
+
+                // ハイライトを削除
+                document.querySelectorAll('.choice-item').forEach(item => {
+                    item.classList.remove('correct');
+                });
+            }
+        }
+    </script>
+</body>
+</html>

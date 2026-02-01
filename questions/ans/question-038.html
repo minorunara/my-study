@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>ANS-C01 topic 1 question 38 discussion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+        }
+
+        .header h1 {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+
+        .question-section {
+            padding: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .question-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            white-space: pre-line;
+        }
+
+        .choices {
+            list-style: none;
+        }
+
+        .choice-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-left: 4px solid #6c757d;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .choice-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .choice-item.correct {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        .choice-letter {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #6c757d;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .choice-item.correct .choice-letter {
+            background: #28a745;
+        }
+
+        .answer-section {
+            padding: 20px;
+            background: #e7f3ff;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .answer-section h2 {
+            color: #0066cc;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .correct-answer {
+            font-size: 1.5em;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .vote-stats {
+            margin-top: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+        }
+
+        .vote-bar {
+            display: flex;
+            height: 30px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .vote-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .comments-section {
+            padding: 20px;
+        }
+
+        .comments-section h2 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #495057;
+        }
+
+        .comment {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #007bff;
+        }
+
+        .comment.highly-voted {
+            border-left-color: #ffc107;
+            background: #fff9e6;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .comment-username {
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .comment-badge {
+            background: #ffc107;
+            color: #000;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .comment-upvotes {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .comment-content {
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+
+        .toggle-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 20px 0;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            background: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 5px;
+            }
+
+            .header {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 1.1em;
+            }
+
+            .question-section, .answer-section, .comments-section {
+                padding: 15px;
+            }
+
+            .choice-item {
+                padding: 12px;
+            }
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            background: #0056b3;
+        }
+
+        .nav-btn.disabled {
+            background: #6c757d;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-btn.home-btn {
+            background: #28a745;
+        }
+
+        .nav-btn.home-btn:hover {
+            background: #218838;
+        }
+
+        @media (max-width: 600px) {
+            .navigation {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <script>if(sessionStorage.getItem("authenticated")!=="true"){window.location.href="../../index.html";}</script>
+    <div class="container">
+        <div class="header">
+            <h1>ANS-C01 topic 1 question 38 discussion</h1>
+        </div>
+
+        <div class="question-section">
+            <div class="question-text">A company has deployed a software-defined WAN (SD-WAN) solution to interconnect all of its offices. The company is migrating workloads to AWS and needs to extend its SD-WAN solution to support connectivity to these workloads.A network engineer plans to deploy AWS Transit Gateway Connect and two SD-WAN virtual appliances to provide this connectivity. According to company policies, only a single SD-WAN virtual appliance can handle traffic from AWS workloads at a given time.How should the network engineer configure routing to meet these requirements?</div>
+
+            <ul class="choices">
+                <li class="choice-item">
+                    <span class="choice-letter">A</span>
+                    Add a static default route in the transit gateway route table to point to the secondary SD-WAN virtual appliance. Add routes that are more specific to point to the primary SD-WAN virtual appliance.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">B</span>
+                    Configure the BGP community tag 7224:7300 on the primary SD-WAN virtual appliance for BGP routes toward the transit gateway.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">C</span>
+                    Configure the AS_PATH prepend attribute on the secondary SD-WAN virtual appliance for BGP routes toward the transit gateway.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">D</span>
+                    Disable equal-cost multi-path (ECMP) routing on the transit gateway for Transit Gateway Connect.
+                </li>
+            </ul>
+
+            <button class="toggle-btn" onclick="toggleAnswer()">正解を表示</button>
+        </div>
+
+        <div class="answer-section hidden" id="answer-section">
+            <h2>正解</h2>
+            <div class="correct-answer">C</div>
+            
+            <div class="vote-stats">
+                <strong>コミュニティ投票（計 19 票）</strong>
+                <div class="vote-bar">
+                    <div class="vote-segment" style="width: 58.0%; background: #007bff;">C (58%)</div><div class="vote-segment" style="width: 32.0%; background: #17a2b8;">A (32%)</div><div class="vote-segment" style="width: 11.0%; background: #28a745;">11%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comments-section hidden" id="comments-section">
+            <h2>主要なディスカッション</h2>
+            <div class="comment highly-voted">
+                <div class="comment-header">
+                    <span class="comment-username">dremm</span>
+                    <span class="comment-badge">Highly Voted</span>
+                    <span class="comment-upvotes">👍 21 votes</span>
+                </div>
+                <div class="comment-content">A - incorrect , static routes are not possible in TGW
+B- incorrect, these BGP communities are used for BGP over DX
+C- correct , AS_PATH prepending is a standard BGP way of influencing return traffic for advertised prefixes and SDWAN supports this.
+D- incorrect, disabling ECMP will make sure the SDWAN&gt;TGW traffic is not load shared,  but the return traffic TGW&gt;SDWAN is not affected and therefore both appliances will process traffic.</div>
+            </div>
+            <div class="comment highly-voted">
+                <div class="comment-header">
+                    <span class="comment-username">zaazanuna</span>
+                    <span class="comment-badge">Highly Voted</span>
+                    <span class="comment-upvotes">👍 11 votes</span>
+                </div>
+                <div class="comment-content">Option C -  focuses specifically on the SD-WAN virtual appliances. By configuring the AS_PATH prepend attribute on the secondary SD-WAN virtual appliance for BGP routes toward the transit gateway, the network engineer can influence routing preferences, making the primary SD-WAN virtual appliance the preferred path while keeping the secondary appliance as a backup. This approach meets the company&#x27;s requirement of having only a single SD-WAN virtual appliance handle traffic from AWS workloads at a given time without impacting other connections.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">FayeG</span>
+                    
+                    <span class="comment-upvotes">👍 3 votes</span>
+                </div>
+                <div class="comment-content">As per https://docs.aws.amazon.com/whitepapers/latest/aws-vpc-connectivity-options/aws-transit-gateway-sd-wan.html SD-Wan connects to TGW using BGP for routing.
+Therefore no static route, therefore C is the answer.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">acloudguru</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">Both B and C are for preference</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Neo00</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">A
+Guys who said static routes are not supported in TGW, you probably confused TGW route table and TGW Connect, two different things, TGW Connect is a feather under TGW. 
+TGW Connect doesn&#x27;t support static route - YES
+TGW support both static and dynamic routes 
+&quot;Q: How does routing work in AWS Transit Gateway?
+
+AWS Transit Gateway supports dynamic and static routing between attached Amazon VPCs and VPNs. By default, Amazon VPCs, VPNs, Direct Connect gateways, Transit Gateway Connect and peered Transit Gateways are associated to the default route table. &quot;
+https://aws.amazon.com/transit-gateway/faqs/#:~:text=AWS%20Transit%20Gateway%20supports%20dynamic,to%20the%20default%20route%20table.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">youonebe</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">The answer is A, Cantrill explained this very well in his `Transit gateway Deep Dive` course</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Spaurito</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">Option C is best.  Option A says adding a static route and add additional afterwards.  Static Routes take preference but the question states only one appliance can handle traffic at a time.  Gotta go with C</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Jonalb</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">its a C</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Raphaello</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">C is the correct answer. Influence AS_PATH to favour the primary.
+
+CONNECT attachments do not support static routes. BGP is a minimum requirement for Transit Gateway Connect.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">tromyunpak</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">Correct Answer is C - 
+A will only influence the traffic from the AWS side 
+B is applicable to Direct Connect
+C uses prepend to prioritise traffic
+D only load sharing is disabled routes are still active</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">meseerie</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">I have created this scenario in Production using AS_Path prepend. 
+AS_Path It&#x27;s like basically faking an extra hop/
+
+For BGP AS_Path and local preference will do the job for routing advert.
+The Goal was to achieve an Active/Standby scenario and avoid asymmetric routing.
+Option C correct</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">vikasj1in</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">Adding a static default route in the transit gateway route table to point to the secondary SD-WAN virtual appliance ensures that the secondary appliance is the default route, meaning it will be used only when no more specific route is available.
+Adding more specific routes to point to the primary SD-WAN virtual appliance allows for traffic from AWS workloads to be directed to the primary appliance, satisfying the company policy that only a single SD-WAN virtual appliance should handle traffic from AWS workloads at a given time.
+Options B and C involve BGP configurations but may not be as straightforward or aligned with the requirement of having a single SD-WAN virtual appliance handling traffic at a time.
+Option D is not relevant to this specific scenario and doesn&#x27;t address the requirement of having a single SD-WAN virtual appliance handle traffic at a given time.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">marfee</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">I think that it&#x27;s correcty answer is C.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">WMF0187</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">If there are two Connect peers, the preferred route is the Transit Gateway Connect peer that uses the BGP AS-PATH attribute.
+
+To use Equal Cost Multipath (ECMP) routing between multiple appliances, you must configure the appliances to advertise the same prefixes to transit gateways using the same BGP AS-PATH attribute. The AS-PATH and autonomous system number (ASN) must match for the transit gateway to select all available ECMP paths. Transit Gateways can use ECMP between Transit Gateway Connect peers on the same Connect attachment or between Connect attachments on the same Transit Gateway. Transit Gateway does not support the use of ECMP between both redundant BGP peer connections established by one peer.
+
+Connect attachments propagate routes to the Transit Gateway route table by default.
+
+Static routes are not supported.
+https://docs.aws.amazon.com/ja_jp/vpc/latest/tgw/tgw-connect.html#tgw-connect-requirements</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">ExamTopix01</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">C
+A Transit Gateway Connect peer using the BGP AS-PATH attribute is the preferred route when you have two Connect peers.
+https://docs.aws.amazon.com/ja_jp/vpc/latest/tgw/tgw-connect.html#tgw-connect-requirements</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">sp237</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">https://aws.amazon.com/blogs/networking-and-content-delivery/migrating-sd-wan-appliances-to-aws-transit-gateway-connect/
+Improved availability: Transit Gateway Connect supports equal-cost multipathing (ECMP) with a 5-tuple hash – protocol number, source IP address, destination IP address, source port number, and destination port number. This allows your traffic to be distributed evenly across multiple appliances, reducing the impact of a single appliance failure compared to the one-appliance-per-AZ approach with VPC attachments.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">A_A_AB</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">Have a look at https://aws.amazon.com/blogs/networking-and-content-delivery/simplify-sd-wan-connectivity-with-aws-transit-gateway-connect/
+
+BGP is the minimum requirement. Thus, between BGP options (B&amp;C) C is the right one as those communities in option B can be used on DX connection.</div>
+            </div>
+        </div>
+    <div class="navigation">
+    <a href="question-037.html" class="nav-btn prev-btn">← 前の問題</a>
+    <a href="../../index.html" class="nav-btn home-btn">📋 目次</a>
+    <a href="question-039.html" class="nav-btn next-btn">次の問題 →</a>
+</div>
+    </div>
+
+    <script>
+        let answerVisible = false;
+
+        function toggleAnswer() {
+            const answerSection = document.getElementById('answer-section');
+            const commentsSection = document.getElementById('comments-section');
+            const btn = document.querySelector('.toggle-btn');
+            const correctLetter = 'C';
+
+            answerVisible = !answerVisible;
+
+            if (answerVisible) {
+                answerSection.classList.remove('hidden');
+                commentsSection.classList.remove('hidden');
+                btn.textContent = '正解を隠す';
+
+                // 正解の選択肢をハイライト (複数選択に対応: "DEF" → ['D','E','F'])
+                const correctLetters = correctLetter.split('');
+                document.querySelectorAll('.choice-item').forEach(item => {
+                    const letter = item.querySelector('.choice-letter').textContent.trim();
+                    if (correctLetters.includes(letter)) {
+                        item.classList.add('correct');
+                    }
+                });
+            } else {
+                answerSection.classList.add('hidden');
+                commentsSection.classList.add('hidden');
+                btn.textContent = '正解を表示';
+
+                // ハイライトを削除
+                document.querySelectorAll('.choice-item').forEach(item => {
+                    item.classList.remove('correct');
+                });
+            }
+        }
+    </script>
+</body>
+</html>

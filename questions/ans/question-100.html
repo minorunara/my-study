@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>ANS-C01 topic 1 question 100 discussion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+        }
+
+        .header h1 {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+
+        .question-section {
+            padding: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .question-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            white-space: pre-line;
+        }
+
+        .choices {
+            list-style: none;
+        }
+
+        .choice-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-left: 4px solid #6c757d;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .choice-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .choice-item.correct {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        .choice-letter {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #6c757d;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .choice-item.correct .choice-letter {
+            background: #28a745;
+        }
+
+        .answer-section {
+            padding: 20px;
+            background: #e7f3ff;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .answer-section h2 {
+            color: #0066cc;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .correct-answer {
+            font-size: 1.5em;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .vote-stats {
+            margin-top: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+        }
+
+        .vote-bar {
+            display: flex;
+            height: 30px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .vote-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .comments-section {
+            padding: 20px;
+        }
+
+        .comments-section h2 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #495057;
+        }
+
+        .comment {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #007bff;
+        }
+
+        .comment.highly-voted {
+            border-left-color: #ffc107;
+            background: #fff9e6;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .comment-username {
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .comment-badge {
+            background: #ffc107;
+            color: #000;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .comment-upvotes {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .comment-content {
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+
+        .toggle-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 20px 0;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            background: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 5px;
+            }
+
+            .header {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 1.1em;
+            }
+
+            .question-section, .answer-section, .comments-section {
+                padding: 15px;
+            }
+
+            .choice-item {
+                padding: 12px;
+            }
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            background: #0056b3;
+        }
+
+        .nav-btn.disabled {
+            background: #6c757d;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-btn.home-btn {
+            background: #28a745;
+        }
+
+        .nav-btn.home-btn:hover {
+            background: #218838;
+        }
+
+        @media (max-width: 600px) {
+            .navigation {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <script>if(sessionStorage.getItem("authenticated")!=="true"){window.location.href="../../index.html";}</script>
+    <div class="container">
+        <div class="header">
+            <h1>ANS-C01 topic 1 question 100 discussion</h1>
+        </div>
+
+        <div class="question-section">
+            <div class="question-text">A network engineer is designing a hybrid networking environment that will connect a company&#x27;s corporate network to the company&#x27;s AWS environment. The AWS environment consists of 30 VPCs in 3 AWS Regions.The network engineer needs to implement a solution to centrally filter traffic by using a firewall that the company&#x27;s security team has approved. The solution must give all the VPCs the ability to connect to each other. Connectivity between AWS and the corporate network must meet a minimum bandwidth requirement of 2 Gbps.Which solution will meet these requirements?</div>
+
+            <ul class="choices">
+                <li class="choice-item">
+                    <span class="choice-letter">A</span>
+                    Deploy an IPsec VPN connection between the corporate network and a new transit gateway. Connect all VPCs to the transit gateway. Associate the approved firewall with the transit gateway.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">B</span>
+                    Deploy a single 10 Gbps AWS Direct Connect connection between the corporate network and virtual private gateway of each VPC. Connect the virtual private gateways to a Direct Connect gateway. Build an IPsec tunnel to a new transit VPC. Deploy the approved firewall to the transit VPC.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">C</span>
+                    Deploy two 1 Gbps AWS Direct Connect connections in different Direct Connect locations to connect to the corporate network. Build a transit VIF on each connection to a Direct Connect gateway. Associate the Direct Connect gateway with a new transit gateway for each Region. Configure the VIFs to use equal-cost multipath (ECMP) routing. Connect all the VPCs in the three Regions to the transit gateway. Configure the transit gateway route table to route traffic to an inspection VPDeploy the approved firewall to the inspection VPC.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">D</span>
+                    Deploy four 1 Gbps AWS Direct Connect connections in different Direct Connect locations to connect to the corporate network. Build a transit VIF on each connection to a Direct Connect gateway. Associate the Direct Connect gateway with a new transit gateway for each Region. Connect the transit gateways by using a transit gateway peering attachment. Configure the VIFs to use equal-cost multipath (ECMP) routing. Configure transit gateway route tables to route traffic to an inspection VPC. Deploy the approved firewall to the inspection VPC.
+                </li>
+            </ul>
+
+            <button class="toggle-btn" onclick="toggleAnswer()">正解を表示</button>
+        </div>
+
+        <div class="answer-section hidden" id="answer-section">
+            <h2>正解</h2>
+            <div class="correct-answer">D</div>
+            
+            <div class="vote-stats">
+                <strong>コミュニティ投票（計 22 票）</strong>
+                <div class="vote-bar">
+                    <div class="vote-segment" style="width: 95.0%; background: #007bff;">D (95%)</div><div class="vote-segment" style="width: 5.0%; background: #17a2b8;">5%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comments-section hidden" id="comments-section">
+            <h2>主要なディスカッション</h2>
+            <div class="comment highly-voted">
+                <div class="comment-header">
+                    <span class="comment-username">Manh</span>
+                    <span class="comment-badge">Highly Voted</span>
+                    <span class="comment-upvotes">👍 8 votes</span>
+                </div>
+                <div class="comment-content">This solution meets the requirements because:
+
+•  It uses AWS Direct Connect, which provides a dedicated and private connection between the corporate network and AWS, with a minimum bandwidth of 2 Gbps (4 x 1 Gbps).
+
+•  It uses a Direct Connect gateway, which allows multiple VPCs in different Regions to share the same Direct Connect connection.
+
+•  It uses a transit gateway, which acts as a network hub that connects multiple VPCs and other networks, such as the corporate network and the inspection VPC.
+
+•  It uses a transit gateway peering attachment, which enables routing between transit gateways in different Regions.
+
+•  It uses ECMP routing, which allows traffic to be distributed across multiple paths for higher throughput and redundancy.
+
+•  It uses an inspection VPC, which hosts the approved firewall and filters traffic between the corporate network and the AWS environment.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">troopie22</span>
+                    
+                    <span class="comment-upvotes">👍 3 votes</span>
+                </div>
+                <div class="comment-content">I think the key is the need for connecting all the VPCs in different regions together and you can only accomplish that with the TGW peering in D.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">AzureDP900</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">D is right
+1) Centrally filter traffic: The proposed solution involves a new transit gateway and an inspection VPC, which acts as a central point for filtering traffic.
+2) All VPCs connect to each other: All VPCs in the three regions are connected to the transit gateway, allowing them to communicate with each other.
+3)Minimum bandwidth requirement of 2 Gbps: The solution includes four 1 Gbps connections, which can be combined using ECMP routing and multi-attach attachments to provide a total minimum bandwidth of 2 Gbps.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Blitz1</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">i have read the answers several times and the debate is indeed between C and D.
+But i believe C) is excluded in the end because:
+1) even if it is stating that is creating &quot;a new transit gateway for each Region&quot; after few phrases is saying &quot;Connect all the VPCs in the three Regions to the transit gateway&quot;.
+Ups...you cannot connect all the VPCs in all the regions on only ONE transit gateway. Maybe is phrased bad(maybe they wanted to say something like: attach all the vpcs to their corresponding transit gateways in each region)  or it&#x27;s a  big clue. And i believe is the clue.
+2) in D we have a transit peering which is required by &quot;The solution must give all the VPCs the ability to connect to each other&quot; BUT this can be a benefit in the answer or a hint for actually disqualify the response. It is not saying in the question if traffic between regions should be inspected or not.(and i see that most of the ppl assumed that only traffic between on-prem and aws should be inspected) - this one is very tricky.
+
+So, yes i will go in the end with D just because of (1) and consider (2) a strange bonus.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">WherecanIstart</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">D is the correct answer. You need to peer the transit gateways.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Arad</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">I think the correct answer is D.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Balasmaniam</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">option C - each region has a DXGW but maximum 3 VPC can connect on single DXGW without TGW.
+Option : D , has TGW with DXGW can connect multiple VPC with TGW peering.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">PRASAD180</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">D is correct</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">woorkim</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">D is correct!</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Spaurito</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">D - Key to the answer for VPC peering connectivity &quot;Connect the transit gateways by using a transit gateway peering attachment.&quot;</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Raphaello</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">D is the correct answer.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">evargasbrz</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">C is the right, as D didn&#x27;t say to Connect all the VPCs in the three Regions to the transit gateway. You have no VPCs connected to the TGW in each region, so C is the right.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">DeathFrmAbv</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">D provides transit gateway peering, the others don&#x27;t, so D</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">tcp22</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">D for sure, C does not provide minimum2 Gbps in case of one DX goes down.</div>
+            </div>
+        </div>
+    <div class="navigation">
+    <a href="question-099.html" class="nav-btn prev-btn">← 前の問題</a>
+    <a href="../../index.html" class="nav-btn home-btn">📋 目次</a>
+    <a href="question-101.html" class="nav-btn next-btn">次の問題 →</a>
+</div>
+    </div>
+
+    <script>
+        let answerVisible = false;
+
+        function toggleAnswer() {
+            const answerSection = document.getElementById('answer-section');
+            const commentsSection = document.getElementById('comments-section');
+            const btn = document.querySelector('.toggle-btn');
+            const correctLetter = 'D';
+
+            answerVisible = !answerVisible;
+
+            if (answerVisible) {
+                answerSection.classList.remove('hidden');
+                commentsSection.classList.remove('hidden');
+                btn.textContent = '正解を隠す';
+
+                // 正解の選択肢をハイライト (複数選択に対応: "DEF" → ['D','E','F'])
+                const correctLetters = correctLetter.split('');
+                document.querySelectorAll('.choice-item').forEach(item => {
+                    const letter = item.querySelector('.choice-letter').textContent.trim();
+                    if (correctLetters.includes(letter)) {
+                        item.classList.add('correct');
+                    }
+                });
+            } else {
+                answerSection.classList.add('hidden');
+                commentsSection.classList.add('hidden');
+                btn.textContent = '正解を表示';
+
+                // ハイライトを削除
+                document.querySelectorAll('.choice-item').forEach(item => {
+                    item.classList.remove('correct');
+                });
+            }
+        }
+    </script>
+</body>
+</html>

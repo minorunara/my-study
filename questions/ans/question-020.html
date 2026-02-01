@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>ANS-C01 topic 1 question 20 discussion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+        }
+
+        .header h1 {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+
+        .question-section {
+            padding: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .question-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            white-space: pre-line;
+        }
+
+        .choices {
+            list-style: none;
+        }
+
+        .choice-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-left: 4px solid #6c757d;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .choice-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .choice-item.correct {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        .choice-letter {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #6c757d;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .choice-item.correct .choice-letter {
+            background: #28a745;
+        }
+
+        .answer-section {
+            padding: 20px;
+            background: #e7f3ff;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .answer-section h2 {
+            color: #0066cc;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .correct-answer {
+            font-size: 1.5em;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .vote-stats {
+            margin-top: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+        }
+
+        .vote-bar {
+            display: flex;
+            height: 30px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .vote-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .comments-section {
+            padding: 20px;
+        }
+
+        .comments-section h2 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #495057;
+        }
+
+        .comment {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #007bff;
+        }
+
+        .comment.highly-voted {
+            border-left-color: #ffc107;
+            background: #fff9e6;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .comment-username {
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .comment-badge {
+            background: #ffc107;
+            color: #000;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .comment-upvotes {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .comment-content {
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+
+        .toggle-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 20px 0;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            background: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 5px;
+            }
+
+            .header {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 1.1em;
+            }
+
+            .question-section, .answer-section, .comments-section {
+                padding: 15px;
+            }
+
+            .choice-item {
+                padding: 12px;
+            }
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            background: #0056b3;
+        }
+
+        .nav-btn.disabled {
+            background: #6c757d;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-btn.home-btn {
+            background: #28a745;
+        }
+
+        .nav-btn.home-btn:hover {
+            background: #218838;
+        }
+
+        @media (max-width: 600px) {
+            .navigation {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <script>if(sessionStorage.getItem("authenticated")!=="true"){window.location.href="../../index.html";}</script>
+    <div class="container">
+        <div class="header">
+            <h1>ANS-C01 topic 1 question 20 discussion</h1>
+        </div>
+
+        <div class="question-section">
+            <div class="question-text">A company operates its IT services through a multi-site hybrid infrastructure. The company deploys resources on AWS in the us-east-1 Region and in the eu-west-2 Region. The company also deploys resources in its own data centers that are located in the United States (US) and in the United Kingdom (UK). In both AWS Regions, the company uses a transit gateway to connect 15 VPCs to each other. The company has created a transit gateway peering connection between the two transit gateways. The VPC CIDR blocks do not overlap with each other or with IP addresses used within the data centers. The VPC CIDR prefixes can also be aggregated either on a Regional level or for the company&#x27;s entire AWS environment.The data centers are connected to each other by a private WAN connection. IP routing information is exchanged dynamically through Interior BGP (iBGP) sessions. The data centers maintain connectivity to AWS through one AWS Direct Connect connection in the US and one Direct Connect connection in the UK. Each Direct Connect connection is terminated on a Direct Connect gateway and is associated with a local transit gateway through a transit VIF.Traffic follows the shortest geographical path from source to destination. For example, packets from the UK data center that are targeted to resources in eu-west-2 travel across the local Direct Connect connection. In cases of cross-Region data transfers, such as from the UK data center to VPCs in us-east-1, the private WAN connection must be used to minimize costs on AWS. A network engineer has configured each transit gateway association on the Direct Connect gateway to advertise VPC-specific CIDR IP prefixes only from the local Region. The routes toward the other Region must be learned through BGP from the routers in the other data center in the original, non-aggregated form.The company recently experienced a problem with cross-Region data transfers because of issues with its private WAN connection. The network engineer needs to modify the routing setup to prevent similar interruptions in the future. The solution cannot modify the original traffic routing goal when the network is operating normally.Which modifications will meet these requirements? (Choose two.)</div>
+
+            <ul class="choices">
+                <li class="choice-item">
+                    <span class="choice-letter">A</span>
+                    Remove all the VPC CIDR prefixes from the list of subnets advertised through the local Direct Connect connection. Add the company&#x27;s entire AWS environment aggregate route to the list of subnets advertised through the local Direct Connect connection.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">B</span>
+                    Add the CIDR prefixes from the other Region VPCs and the local VPC CIDR blocks to the list of subnets advertised through the local Direct Connect connection. Configure data center routers to make routing decisions based on the BGP communities received.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">C</span>
+                    Add the aggregate IP prefix for the other Region and the local VPC CIDR blocks to the list of subnets advertised through the local Direct Connect connection.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">D</span>
+                    Add the aggregate IP prefix for the company&#x27;s entire AWS environment and the local VPC CIDR blocks to the list of subnets advertised through the local Direct Connect connection.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">E</span>
+                    Remove all the VPC CIDR prefixes from the list of subnets advertised through the local Direct Connect connection. Add both Regional aggregate IP prefixes to the list of subnets advertised through the Direct Connect connection on both sides of the network. Configure data center routers to make routing decisions based on the BGP communities received.
+                </li>
+            </ul>
+
+            <button class="toggle-btn" onclick="toggleAnswer()">正解を表示</button>
+        </div>
+
+        <div class="answer-section hidden" id="answer-section">
+            <h2>正解</h2>
+            <div class="correct-answer">CE</div>
+            
+            <div class="vote-stats">
+                <strong>コミュニティ投票（計 85 票）</strong>
+                <div class="vote-bar">
+                    <div class="vote-segment" style="width: 47.0%; background: #007bff;">CE (47%)</div><div class="vote-segment" style="width: 45.0%; background: #17a2b8;">CD (45%)</div><div class="vote-segment" style="width: 8.0%; background: #28a745;">4%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comments-section hidden" id="comments-section">
+            <h2>主要なディスカッション</h2>
+            <div class="comment highly-voted">
+                <div class="comment-header">
+                    <span class="comment-username">Untamables</span>
+                    <span class="comment-badge">Highly Voted</span>
+                    <span class="comment-upvotes">👍 26 votes</span>
+                </div>
+                <div class="comment-content">C and E
+If the private WAN failed, the network engineer would swing the traffic to the other region through the local Direct Connect and the Transit Gateways. That is the requirement.
+The solution is that the local DC has 2 kinds of route to the other region VPCs. One is the existing CIDR-based routes via the private WAN, another is the advertised aggregated routes from the local Direct Connect connection. CIDR-based routes are prior to the aggregated routes advertised from Direct Connect connection due to the longest prefix match routing algorithm.
+The options which match this solution are C and E.</div>
+            </div>
+            <div class="comment highly-voted">
+                <div class="comment-header">
+                    <span class="comment-username">slackbot</span>
+                    <span class="comment-badge">Highly Voted</span>
+                    <span class="comment-upvotes">👍 17 votes</span>
+                </div>
+                <div class="comment-content">B and E dont make sense as private and transit VIFs do not carry any BGP communities from AWS towards CGW. only CGW can send communities which AWS will use to route traffic back to customer
+the idea is:
+each DX GW must advertise the local VPCs CIDRs (which are more specific) and the remote region summarized routes (over iBGP local routers signify more specific routes to home regions).</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Chinmoy</span>
+                    
+                    <span class="comment-upvotes">👍 7 votes</span>
+                </div>
+                <div class="comment-content">CD is correct because of more specific routes are advertised over local connections</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">VerRi</span>
+                    
+                    <span class="comment-upvotes">👍 4 votes</span>
+                </div>
+                <div class="comment-content">This question is just insane, over 500 words, and the wording is hard to understand. You must draw a diagram and translate the words into English to understand them.
+
+In short, cross-region traffic was originally handled by private WAN, but now it is down. We have to find another way to do that. We have DXG and TGW in each region and 2 TGWs are peered.
+
+C: Add IPs for local and other regions
+E: Remove static VPC CIDR prefixes and add cross-region IP prefixes</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Arad</span>
+                    
+                    <span class="comment-upvotes">👍 4 votes</span>
+                </div>
+                <div class="comment-content">B and E do not make sense as private and transit VIFs do not carry any BGP communities from AWS to CGW. A and E are also very destructive while it is asked the solution cannot modify original traffic routing goals. So the only options which make sense are C &amp; D.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">vikasj1in</span>
+                    
+                    <span class="comment-upvotes">👍 3 votes</span>
+                </div>
+                <div class="comment-content">C. This ensures that the BGP advertisements include both the aggregate IP prefix for the other Region and the specific CIDR blocks for the local VPCs. This is useful for ensuring optimal routing and maintaining connectivity during cross-Region data transfers.
+D. this approach ensures that BGP advertisements include both the aggregate IP prefix for the entire AWS environment and the specific CIDR blocks for the local VPCs. This provides a more comprehensive view of the AWS environment, allowing the data center routers to make routing decisions based on the received BGP advertisements.
+By combining these modifications, you create a setup that allows for optimal routing and fault tolerance during cross-Region data transfers while still respecting the original traffic routing goals when the network is operating normally.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">dspd</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">never seen such a long questions with unclear answer and goal. Closest answer C and E. Need lot of cleanup on content</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Jonalb</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">C and D
+Option C: The approach of advertising aggregated prefixes for each Region and local CIDR blocks can help simplify the routing table and address specific inter-region connectivity issues. However, if the configuration does not include prefixes for the entire AWS environment, there may be gaps in coverage, especially if WAN connectivity fails.
+
+Option D: The approach of advertising an aggregated IP prefix for the entire AWS environment in addition to local CIDR blocks tends to be more comprehensive. This ensures that the entire AWS infrastructure is covered and can more robustly address routing issues, especially in situations where the WAN connection fails.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">[Removed]</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">If option C is correct I cannot see why D should be not correct.
+Option C:
+
+Advertises other region aggregate + local non-aggregated VPC CIDRs
+Option D:
+
+Advertises entire AWS aggregate + local non-aggregated VPC CIDRs</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">[Removed]</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">Given the constraint 
+
+Option E is correct because it removes all the VPC CIDR prefixes from the list of subnets advertised through the local Direct Connect connection and adds both Regional aggregate IP prefixes to the list of subnets advertised through the Direct Connect connection on both sides of the network. It also configures data center routers to make routing decisions based on the BGP communities received.
+
+Option D is correct because it adds both Regional aggregate IP prefixes to the list of subnets advertised through the Direct Connect connection on both sides of the network. It also configures data center routers to make routing decisions based on the BGP communities received
+https://aws.amazon.com/blogs/networking-and-content-delivery/setting-up-aws-direct-connect-gateway-to-route-dx-traffic-to-any-aws-region/</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Wiss7</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">Private virtual interface and transit virtual interface BGP communities
+AWS Direct Connect supports local preference BGP community tags to help control the route preference of traffic on private virtual interfaces and transit virtual interfaces.
+
+https://docs.aws.amazon.com/directconnect/latest/UserGuide/routing-and-bgp.html</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">RavikantKumarRavi</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">AWS attached BGP community incase of public VIF not in case of private or transit VIF  hence answer consist BGP communicate is wrong</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">AlirezaNetWorld</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">C and E. I think, we all agree on the C; why E is correct? Because removing the individual VPC CIDR prefixes and using regional aggregate IP prefixes simplifies the routing table and helps in preventing routing issues, especially during cross-region data transfer.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Jonalb</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">CD its a true!</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Raphaello</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">Honestly, I do not get the request here!
+It says..
+&quot;The company recently experienced a problem with cross-Region data transfers because of issues with its private WAN connection. 
+The network engineer needs to modify the routing setup to prevent similar interruptions in the future.&quot;
+
+Does that mean, the request is adding for example a route from UK DC to AWS US VPC through DX/DxGW/TGW in case private WAN between UK DC and US DC failed?</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">marfee</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">I think that it&#x27;s correcty answer is C &amp; E.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">asiansensation</span>
+                    
+                    <span class="comment-upvotes">👍 1 votes</span>
+                </div>
+                <div class="comment-content">C,D are correct.  You cannot receive BGP communities over DX as there is no way of configuring this in AWS.  The on prem routers need to the send the respective BGP communities and AWS will respond accordingly.  A does not make sense as it overlaps with D.</div>
+            </div>
+        </div>
+    <div class="navigation">
+    <a href="question-019.html" class="nav-btn prev-btn">← 前の問題</a>
+    <a href="../../index.html" class="nav-btn home-btn">📋 目次</a>
+    <a href="question-021.html" class="nav-btn next-btn">次の問題 →</a>
+</div>
+    </div>
+
+    <script>
+        let answerVisible = false;
+
+        function toggleAnswer() {
+            const answerSection = document.getElementById('answer-section');
+            const commentsSection = document.getElementById('comments-section');
+            const btn = document.querySelector('.toggle-btn');
+            const correctLetter = 'CE';
+
+            answerVisible = !answerVisible;
+
+            if (answerVisible) {
+                answerSection.classList.remove('hidden');
+                commentsSection.classList.remove('hidden');
+                btn.textContent = '正解を隠す';
+
+                // 正解の選択肢をハイライト (複数選択に対応: "DEF" → ['D','E','F'])
+                const correctLetters = correctLetter.split('');
+                document.querySelectorAll('.choice-item').forEach(item => {
+                    const letter = item.querySelector('.choice-letter').textContent.trim();
+                    if (correctLetters.includes(letter)) {
+                        item.classList.add('correct');
+                    }
+                });
+            } else {
+                answerSection.classList.add('hidden');
+                commentsSection.classList.add('hidden');
+                btn.textContent = '正解を表示';
+
+                // ハイライトを削除
+                document.querySelectorAll('.choice-item').forEach(item => {
+                    item.classList.remove('correct');
+                });
+            }
+        }
+    </script>
+</body>
+</html>
