@@ -1,0 +1,433 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>SAP資格 topic 1 question 48 discussion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+        }
+        
+        .header h1 {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+        
+        .question-section {
+            padding: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .question-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            white-space: pre-line;
+        }
+        
+        .choices {
+            list-style: none;
+        }
+        
+        .choice-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-left: 4px solid #6c757d;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .choice-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .choice-item.correct {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+        
+        .choice-letter {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #6c757d;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .choice-item.correct .choice-letter {
+            background: #28a745;
+        }
+        
+        .answer-section {
+            padding: 20px;
+            background: #e7f3ff;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .answer-section h2 {
+            color: #0066cc;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        .correct-answer {
+            font-size: 1.5em;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .vote-stats {
+            margin-top: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+        }
+        
+        .vote-bar {
+            display: flex;
+            height: 30px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .vote-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .comments-section {
+            padding: 20px;
+        }
+        
+        .comments-section h2 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #495057;
+        }
+        
+        .comment {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .comment.highly-voted {
+            border-left-color: #ffc107;
+            background: #fff9e6;
+        }
+        
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .comment-username {
+            font-weight: bold;
+            color: #495057;
+        }
+        
+        .comment-badge {
+            background: #ffc107;
+            color: #000;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .comment-upvotes {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+        
+        .comment-content {
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+        
+        .toggle-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 20px 0;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .toggle-btn:hover {
+            background: #0056b3;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 5px;
+            }
+            
+            .header {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.1em;
+            }
+            
+            .question-section, .answer-section, .comments-section {
+                padding: 15px;
+            }
+            
+            .choice-item {
+                padding: 12px;
+            }
+        }
+    
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            background: #0056b3;
+        }
+
+        .nav-btn.disabled {
+            background: #6c757d;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-btn.home-btn {
+            background: #28a745;
+        }
+
+        .nav-btn.home-btn:hover {
+            background: #218838;
+        }
+
+        @media (max-width: 600px) {
+            .navigation {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    
+    </style>
+</head>
+<body>
+    <script>if(sessionStorage.getItem("authenticated")!=="true"){window.location.href="../index.html";}</script>
+    <div class="container">
+        <div class="header">
+            <h1>SAP資格 topic 1 question 48 discussion</h1>
+        </div>
+        
+        <div class="question-section">
+            <div class="question-text">A solutions architect has developed a web application that uses an Amazon API Gateway Regional endpoint and an AWS Lambda function. The consumers of the web application are all close to the AWS Region where the application will be deployed. The Lambda function only queries an Amazon Aurora MySQL database. The solutions architect has configured the database to have three read replicas.During testing, the application does not meet performance requirements. Under high load, the application opens a large number of database connections. The solutions architect must improve the application’s performance.Which actions should the solutions architect take to meet these requirements? (Choose two.)</div>
+            
+            <ul class="choices">
+                <li class="choice-item">
+                    <span class="choice-letter">A</span>
+                    Use the cluster endpoint of the Aurora database.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">B</span>
+                    Use RDS Proxy to set up a connection pool to the reader endpoint of the Aurora database.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">C</span>
+                    Use the Lambda Provisioned Concurrency feature.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">D</span>
+                    Move the code for opening the database connection in the Lambda function outside of the event handler.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">E</span>
+                    Change the API Gateway endpoint to an edge-optimized endpoint.
+                </li>
+            </ul>
+            
+            <button class="toggle-btn" onclick="toggleAnswer()">正解を表示</button>
+        </div>
+        
+        <div class="answer-section hidden" id="answer-section">
+            <h2>正解</h2>
+            <div class="correct-answer">BD</div>
+            
+            
+            <div class="vote-stats">
+                <strong>コミュニティ投票（計 65 票）</strong>
+                <div class="vote-bar">
+                    <div class="vote-segment" style="width: 98.46153846153847%; background: #007bff;">BD (98%)</div><div class="vote-segment" style="width: 1.5384615384615385%; background: #28a745;">BC (2%)</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="comments-section hidden" id="comments-section">
+            <h2>主要なディスカッション</h2>
+            <div class="comment highly-voted">
+                <div class="comment-header">
+                    <span class="comment-username">masetromain</span>
+                    <span class="comment-badge">Highly Voted</span>
+                    <span class="comment-upvotes">👍 47 votes</span>
+                </div>
+                <div class="comment-content">The correct answer is B and D.
+
+B. Using RDS Proxy to set up a connection pool to the reader endpoint of the Aurora database can help improve the performance of the application by reducing the number of connections opened to the database. RDS Proxy manages the connection pool and routes incoming connections to the available read replicas, which can help with connection management and reduce the number of connections that need to be opened and closed.
+
+D. Moving the code for opening the database connection in the Lambda function outside of the event handler can help to improve the performance of the application by allowing the database connection to be reused across multiple requests. This avoids the need to open and close a new connection for each request, which can be time-consuming and resource-intensive.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">mfsec</span>
+                    
+                    <span class="comment-upvotes">👍 4 votes</span>
+                </div>
+                <div class="comment-content">RDS proxy + Lambda function</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Amac1979</span>
+                    
+                    <span class="comment-upvotes">👍 4 votes</span>
+                </div>
+                <div class="comment-content">BD
+https://awstut.com/en/2022/04/30/connect-to-rds-outside-of-lambda-handler-method-to-improve-performance-en/</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">totten</span>
+                    
+                    <span class="comment-upvotes">👍 3 votes</span>
+                </div>
+                <div class="comment-content">B. Use RDS Proxy to set up a connection pool to the reader endpoint of the Aurora database.
+
+RDS Proxy helps manage and efficiently pool database connections, reducing the number of database connections required by the application. It helps improve performance and reduces the load on the database.
+D. Move the code for opening the database connection in the Lambda function outside of the event handler.
+
+By reusing database connections, you can reduce the overhead of opening and closing connections for each Lambda invocation. You can use the Lambda execution context to keep the database connection open and reuse it across multiple requests within the same execution context.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">dev112233xx</span>
+                    
+                    <span class="comment-upvotes">👍 3 votes</span>
+                </div>
+                <div class="comment-content">RDX proxy & connecting outside the handler method is up to 5 times faster than connecting inside.</div>
+            </div>
+        </div>
+    <div class="navigation">
+    <a href="question-047.html" class="nav-btn prev-btn">← 前の問題</a>
+    <a href="../index.html" class="nav-btn home-btn">📋 目次</a>
+    <a href="question-049.html" class="nav-btn next-btn">次の問題 →</a>
+</div>
+    </div>
+    
+    <script>
+        let answerVisible = false;
+        
+        function toggleAnswer() {
+            const answerSection = document.getElementById('answer-section');
+            const commentsSection = document.getElementById('comments-section');
+            const btn = document.querySelector('.toggle-btn');
+            const correctLetter = 'BD';
+            
+            answerVisible = !answerVisible;
+            
+            if (answerVisible) {
+                answerSection.classList.remove('hidden');
+                commentsSection.classList.remove('hidden');
+                btn.textContent = '正解を隠す';
+                
+                // 正解の選択肢をハイライト
+                document.querySelectorAll('.choice-item').forEach(item => {
+                    const letter = item.querySelector('.choice-letter').textContent;
+                    if (letter === correctLetter) {
+                        item.classList.add('correct');
+                    }
+                });
+            } else {
+                answerSection.classList.add('hidden');
+                commentsSection.classList.add('hidden');
+                btn.textContent = '正解を表示';
+                
+                // ハイライトを削除
+                document.querySelectorAll('.choice-item').forEach(item => {
+                    item.classList.remove('correct');
+                });
+            }
+        }
+    </script>
+</body>
+</html>

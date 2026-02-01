@@ -1,0 +1,438 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>SAP資格 topic 1 question 59 discussion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+        }
+        
+        .header h1 {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+        
+        .question-section {
+            padding: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .question-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            white-space: pre-line;
+        }
+        
+        .choices {
+            list-style: none;
+        }
+        
+        .choice-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-left: 4px solid #6c757d;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .choice-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .choice-item.correct {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+        
+        .choice-letter {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #6c757d;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .choice-item.correct .choice-letter {
+            background: #28a745;
+        }
+        
+        .answer-section {
+            padding: 20px;
+            background: #e7f3ff;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .answer-section h2 {
+            color: #0066cc;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        .correct-answer {
+            font-size: 1.5em;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .vote-stats {
+            margin-top: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+        }
+        
+        .vote-bar {
+            display: flex;
+            height: 30px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .vote-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .comments-section {
+            padding: 20px;
+        }
+        
+        .comments-section h2 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #495057;
+        }
+        
+        .comment {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .comment.highly-voted {
+            border-left-color: #ffc107;
+            background: #fff9e6;
+        }
+        
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .comment-username {
+            font-weight: bold;
+            color: #495057;
+        }
+        
+        .comment-badge {
+            background: #ffc107;
+            color: #000;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .comment-upvotes {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+        
+        .comment-content {
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+        
+        .toggle-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 20px 0;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .toggle-btn:hover {
+            background: #0056b3;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 5px;
+            }
+            
+            .header {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.1em;
+            }
+            
+            .question-section, .answer-section, .comments-section {
+                padding: 15px;
+            }
+            
+            .choice-item {
+                padding: 12px;
+            }
+        }
+    
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            background: #0056b3;
+        }
+
+        .nav-btn.disabled {
+            background: #6c757d;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-btn.home-btn {
+            background: #28a745;
+        }
+
+        .nav-btn.home-btn:hover {
+            background: #218838;
+        }
+
+        @media (max-width: 600px) {
+            .navigation {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    
+    </style>
+</head>
+<body>
+    <script>if(sessionStorage.getItem("authenticated")!=="true"){window.location.href="../index.html";}</script>
+    <div class="container">
+        <div class="header">
+            <h1>SAP資格 topic 1 question 59 discussion</h1>
+        </div>
+        
+        <div class="question-section">
+            <div class="question-text">A solutions architect needs to copy data from an Amazon S3 bucket m an AWS account to a new S3 bucket in a new AWS account. The solutions architect must implement a solution that uses the AWS CLI.Which combination of steps will successfully copy the data? (Choose three.)</div>
+            
+            <ul class="choices">
+                <li class="choice-item">
+                    <span class="choice-letter">A</span>
+                    Create a bucket policy to allow the source bucket to list its contents and to put objects and set object ACLs in the destination bucket. Attach the bucket policy to the destination bucket.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">B</span>
+                    Create a bucket policy to allow a user in the destination account to list the source bucket’s contents and read the source bucket’s objects. Attach the bucket policy to the source bucket.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">C</span>
+                    Create an IAM policy in the source account. Configure the policy to allow a user in the source account to list contents and get objects in the source bucket, and to list contents, put objects, and set object ACLs in the destination bucket. Attach the policy to the user.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">D</span>
+                    Create an IAM policy in the destination account. Configure the policy to allow a user in the destination account to list contents and get objects in the source bucket, and to list contents, put objects, and set objectACLs in the destination bucket. Attach the policy to the user.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">E</span>
+                    Run the aws s3 sync command as a user in the source account. Specify the source and destination buckets to copy the data.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">F</span>
+                    Run the aws s3 sync command as a user in the destination account. Specify the source and destination buckets to copy the data.
+                </li>
+            </ul>
+            
+            <button class="toggle-btn" onclick="toggleAnswer()">正解を表示</button>
+        </div>
+        
+        <div class="answer-section hidden" id="answer-section">
+            <h2>正解</h2>
+            <div class="correct-answer">BDF</div>
+            
+            
+            <div class="vote-stats">
+                <strong>コミュニティ投票（計 65 票）</strong>
+                <div class="vote-bar">
+                    <div class="vote-segment" style="width: 95.38461538461539%; background: #007bff;">BDF (95%)</div><div class="vote-segment" style="width: 3.076923076923077%; background: #28a745;">BDE (3%)</div><div class="vote-segment" style="width: 1.5384615384615385%; background: #ffc107;">BCE (2%)</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="comments-section hidden" id="comments-section">
+            <h2>主要なディスカッション</h2>
+            <div class="comment highly-voted">
+                <div class="comment-header">
+                    <span class="comment-username">icassp</span>
+                    <span class="comment-badge">Highly Voted</span>
+                    <span class="comment-upvotes">👍 27 votes</span>
+                </div>
+                <div class="comment-content">"The above command should be executed with destination AWS IAM user account credentials only otherwise the copied objects in destination S3 bucket will still have the source account permissions and won’t be accessible by destination account users." According to https://medium.com/tensult/copy-s3-bucket-objects-across-aws-accounts-e46c15c4b9e1.</div>
+            </div>
+            <div class="comment highly-voted">
+                <div class="comment-header">
+                    <span class="comment-username">masetromain</span>
+                    <span class="comment-badge">Highly Voted</span>
+                    <span class="comment-upvotes">👍 16 votes</span>
+                </div>
+                <div class="comment-content">I switch to BDF;
+Step B is necessary so that the user in the destination account has the necessary permissions to access the source bucket and list its contents, read its objects. 
+
+Step D is needed so that the user in the destination account has the necessary permissions to access the destination bucket and list contents, put objects, and set object ACLs
+
+Step F is necessary because the aws s3 sync command needs to be run using the IAM user credentials from the destination account, so that the objects will have the appropriate permissions for the user in the destination account once they are copied.
+
+The other choices are not correct because :
+A. and C. are about creating policies in the source account but the user who wants to access the data is in the destination account
+E. is about running the command with the source account, which is not suitable because it will lead to copied objects in destination S3 bucket still have the source account permissions and won’t be accessible by destination account users.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">God_Is_Love</span>
+                    
+                    <span class="comment-upvotes">👍 6 votes</span>
+                </div>
+                <div class="comment-content">Logical answer : Who ever uploads to a bucket becomes its owner. So A should ring a flaw in it. Similar issue in C. So straight away, A, C are wrong. that points to B,D to be correct. Refer https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/copy-data-from-an-s3-bucket-in-one-account-and-region-to-another-account-and-region.html
+
+Now E or F ? the hint is in D. Destination account user has the necessary privileges to get/put objects permission. So choose destination account or run sync/copy commands. So the answer should be B, D , F</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">huanaws088</span>
+                    
+                    <span class="comment-upvotes">👍 3 votes</span>
+                </div>
+                <div class="comment-content">https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/copy-data-from-an-s3-bucket-to-another-account-and-region-by-using-the-aws-cli.html</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">jAtlas7</span>
+                    <span class="comment-badge">Most Recent</span>
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">BDF is the answer - see: https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/copy-data-from-an-s3-bucket-to-another-account-and-region-by-using-the-aws-cli.html</div>
+            </div>
+        </div>
+    <div class="navigation">
+    <a href="question-058.html" class="nav-btn prev-btn">← 前の問題</a>
+    <a href="../index.html" class="nav-btn home-btn">📋 目次</a>
+    <a href="question-060.html" class="nav-btn next-btn">次の問題 →</a>
+</div>
+    </div>
+    
+    <script>
+        let answerVisible = false;
+        
+        function toggleAnswer() {
+            const answerSection = document.getElementById('answer-section');
+            const commentsSection = document.getElementById('comments-section');
+            const btn = document.querySelector('.toggle-btn');
+            const correctLetter = 'BDF';
+            
+            answerVisible = !answerVisible;
+            
+            if (answerVisible) {
+                answerSection.classList.remove('hidden');
+                commentsSection.classList.remove('hidden');
+                btn.textContent = '正解を隠す';
+                
+                // 正解の選択肢をハイライト
+                document.querySelectorAll('.choice-item').forEach(item => {
+                    const letter = item.querySelector('.choice-letter').textContent;
+                    if (letter === correctLetter) {
+                        item.classList.add('correct');
+                    }
+                });
+            } else {
+                answerSection.classList.add('hidden');
+                commentsSection.classList.add('hidden');
+                btn.textContent = '正解を表示';
+                
+                // ハイライトを削除
+                document.querySelectorAll('.choice-item').forEach(item => {
+                    item.classList.remove('correct');
+                });
+            }
+        }
+    </script>
+</body>
+</html>

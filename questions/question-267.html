@@ -1,0 +1,423 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>SAP資格 topic 1 question 267 discussion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+        }
+        
+        .header h1 {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+        
+        .question-section {
+            padding: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .question-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            white-space: pre-line;
+        }
+        
+        .choices {
+            list-style: none;
+        }
+        
+        .choice-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-left: 4px solid #6c757d;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .choice-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .choice-item.correct {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+        
+        .choice-letter {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #6c757d;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .choice-item.correct .choice-letter {
+            background: #28a745;
+        }
+        
+        .answer-section {
+            padding: 20px;
+            background: #e7f3ff;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .answer-section h2 {
+            color: #0066cc;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        .correct-answer {
+            font-size: 1.5em;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .vote-stats {
+            margin-top: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+        }
+        
+        .vote-bar {
+            display: flex;
+            height: 30px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .vote-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .comments-section {
+            padding: 20px;
+        }
+        
+        .comments-section h2 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #495057;
+        }
+        
+        .comment {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .comment.highly-voted {
+            border-left-color: #ffc107;
+            background: #fff9e6;
+        }
+        
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .comment-username {
+            font-weight: bold;
+            color: #495057;
+        }
+        
+        .comment-badge {
+            background: #ffc107;
+            color: #000;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .comment-upvotes {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+        
+        .comment-content {
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+        
+        .toggle-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 20px 0;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .toggle-btn:hover {
+            background: #0056b3;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 5px;
+            }
+            
+            .header {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.1em;
+            }
+            
+            .question-section, .answer-section, .comments-section {
+                padding: 15px;
+            }
+            
+            .choice-item {
+                padding: 12px;
+            }
+        }
+    
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            background: #0056b3;
+        }
+
+        .nav-btn.disabled {
+            background: #6c757d;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-btn.home-btn {
+            background: #28a745;
+        }
+
+        .nav-btn.home-btn:hover {
+            background: #218838;
+        }
+
+        @media (max-width: 600px) {
+            .navigation {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    
+    </style>
+</head>
+<body>
+    <script>if(sessionStorage.getItem("authenticated")!=="true"){window.location.href="../index.html";}</script>
+    <div class="container">
+        <div class="header">
+            <h1>SAP資格 topic 1 question 267 discussion</h1>
+        </div>
+        
+        <div class="question-section">
+            <div class="question-text">A company has an application that runs on Amazon EC2 instances in an Amazon EC2 Auto Scaling group. The company uses AWS CodePipeline to deploy the application. The instances that run in the Auto Scaling group are constantly changing because of scaling events.When the company deploys new application code versions, the company installs the AWS CodeDeploy agent on any new target EC2 instances and associates the instances with the CodeDeploy deployment group. The application is set to go live within the next 24 hours.What should a solutions architect recommend to automate the application deployment process with the LEAST amount of operational overhead?</div>
+            
+            <ul class="choices">
+                <li class="choice-item">
+                    <span class="choice-letter">A</span>
+                    Configure Amazon EventBridge to invoke an AWS Lambda function when a new EC2 instance is launched into the Auto Scaling group. Code the Lambda function to associate the EC2 instances with the CodeDeploy deployment group.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">B</span>
+                    Write a script to suspend Amazon EC2 Auto Scaling operations before the deployment of new code. When the deployment is complete, create a new AMI and configure the Auto Scaling group's launch template to use the new AMI for new launches. Resume Amazon EC2 Auto Scaling operations.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">C</span>
+                    Create a new AWS CodeBuild project that creates a new AMI that contains the new code. Configure CodeBuild to update the Auto Scaling group’s launch template to the new AMI. Run an Amazon EC2 Auto Scaling instance refresh operation.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">D</span>
+                    Create a new AMI that has the CodeDeploy agent installed. Configure the Auto Scaling group’s launch template to use the new AMI. Associate the CodeDeploy deployment group with the Auto Scaling group instead of the EC2 instances.
+                </li>
+            </ul>
+            
+            <button class="toggle-btn" onclick="toggleAnswer()">正解を表示</button>
+        </div>
+        
+        <div class="answer-section hidden" id="answer-section">
+            <h2>正解</h2>
+            <div class="correct-answer">D</div>
+            
+            
+            <div class="vote-stats">
+                <strong>コミュニティ投票（計 21 票）</strong>
+                <div class="vote-bar">
+                    <div class="vote-segment" style="width: 95.23809523809523%; background: #007bff;">D (95%)</div><div class="vote-segment" style="width: 4.761904761904762%; background: #28a745;">C (5%)</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="comments-section hidden" id="comments-section">
+            <h2>主要なディスカッション</h2>
+            <div class="comment highly-voted">
+                <div class="comment-header">
+                    <span class="comment-username">Alabi</span>
+                    <span class="comment-badge">Highly Voted</span>
+                    <span class="comment-upvotes">👍 7 votes</span>
+                </div>
+                <div class="comment-content">This solution automates the deployment process by creating a new Amazon Machine Image (AMI) with the CodeDeploy agent installed. The Auto Scaling group's launch template is then updated to use this new AMI. By associating the CodeDeploy deployment group with the Auto Scaling group, CodeDeploy will automatically deploy the application to any new instances launched by the Auto Scaling group.
+
+This approach eliminates the need to manually install the CodeDeploy agent on new instances and associate them with the deployment group. It simplifies the deployment process and reduces operational overhead by leveraging the automation capabilities of CodeDeploy and the Auto Scaling group.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Ganshank</span>
+                    
+                    <span class="comment-upvotes">👍 3 votes</span>
+                </div>
+                <div class="comment-content">D as per this rather old blog post - https://aws.amazon.com/blogs/devops/under-the-hood-aws-codedeploy-and-auto-scaling-integration/</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">SmileyCloud</span>
+                    
+                    <span class="comment-upvotes">👍 3 votes</span>
+                </div>
+                <div class="comment-content">D - correct. You want the agent baked in the AMI.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">gd1</span>
+                    
+                    <span class="comment-upvotes">👍 3 votes</span>
+                </div>
+                <div class="comment-content">GPT: This option provides the least amount of operational overhead by associating the CodeDeploy deployment group with the Auto Scaling group rather than individual EC2 instances. This enables any new instances launched by the Auto Scaling group to be automatically included in deployments, eliminating the need for manual intervention or additional automation to add new instances to the deployment group. The creation of an AMI with the CodeDeploy agent pre-installed ensures that all new instances launched by the Auto Scaling group will have the necessary components to participate in CodeDeploy deployments.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">aviathor</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">It seems really unnecessary to have to install an app on the fly during scale-out of an ASG. Just launching the EC2 instances from a pre-installed AMI is so much faster, and removes sources of error.
+
+I am a little frustrated never to have encountered AWS Image Builder in a question, or in course material...</div>
+            </div>
+        </div>
+    <div class="navigation">
+    <a href="question-266.html" class="nav-btn prev-btn">← 前の問題</a>
+    <a href="../index.html" class="nav-btn home-btn">📋 目次</a>
+    <a href="question-268.html" class="nav-btn next-btn">次の問題 →</a>
+</div>
+    </div>
+    
+    <script>
+        let answerVisible = false;
+        
+        function toggleAnswer() {
+            const answerSection = document.getElementById('answer-section');
+            const commentsSection = document.getElementById('comments-section');
+            const btn = document.querySelector('.toggle-btn');
+            const correctLetter = 'D';
+            
+            answerVisible = !answerVisible;
+            
+            if (answerVisible) {
+                answerSection.classList.remove('hidden');
+                commentsSection.classList.remove('hidden');
+                btn.textContent = '正解を隠す';
+                
+                // 正解の選択肢をハイライト
+                document.querySelectorAll('.choice-item').forEach(item => {
+                    const letter = item.querySelector('.choice-letter').textContent;
+                    if (letter === correctLetter) {
+                        item.classList.add('correct');
+                    }
+                });
+            } else {
+                answerSection.classList.add('hidden');
+                commentsSection.classList.add('hidden');
+                btn.textContent = '正解を表示';
+                
+                // ハイライトを削除
+                document.querySelectorAll('.choice-item').forEach(item => {
+                    item.classList.remove('correct');
+                });
+            }
+        }
+    </script>
+</body>
+</html>

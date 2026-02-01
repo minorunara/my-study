@@ -1,0 +1,432 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>SAP資格 topic 1 question 429 discussion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+        }
+        
+        .header h1 {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+        
+        .question-section {
+            padding: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .question-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            white-space: pre-line;
+        }
+        
+        .choices {
+            list-style: none;
+        }
+        
+        .choice-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-left: 4px solid #6c757d;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .choice-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .choice-item.correct {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+        
+        .choice-letter {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #6c757d;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .choice-item.correct .choice-letter {
+            background: #28a745;
+        }
+        
+        .answer-section {
+            padding: 20px;
+            background: #e7f3ff;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .answer-section h2 {
+            color: #0066cc;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        .correct-answer {
+            font-size: 1.5em;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .vote-stats {
+            margin-top: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+        }
+        
+        .vote-bar {
+            display: flex;
+            height: 30px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .vote-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .comments-section {
+            padding: 20px;
+        }
+        
+        .comments-section h2 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #495057;
+        }
+        
+        .comment {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .comment.highly-voted {
+            border-left-color: #ffc107;
+            background: #fff9e6;
+        }
+        
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .comment-username {
+            font-weight: bold;
+            color: #495057;
+        }
+        
+        .comment-badge {
+            background: #ffc107;
+            color: #000;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .comment-upvotes {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+        
+        .comment-content {
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+        
+        .toggle-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 20px 0;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .toggle-btn:hover {
+            background: #0056b3;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 5px;
+            }
+            
+            .header {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.1em;
+            }
+            
+            .question-section, .answer-section, .comments-section {
+                padding: 15px;
+            }
+            
+            .choice-item {
+                padding: 12px;
+            }
+        }
+    
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            background: #0056b3;
+        }
+
+        .nav-btn.disabled {
+            background: #6c757d;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-btn.home-btn {
+            background: #28a745;
+        }
+
+        .nav-btn.home-btn:hover {
+            background: #218838;
+        }
+
+        @media (max-width: 600px) {
+            .navigation {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    
+    </style>
+</head>
+<body>
+    <script>if(sessionStorage.getItem("authenticated")!=="true"){window.location.href="../index.html";}</script>
+    <div class="container">
+        <div class="header">
+            <h1>SAP資格 topic 1 question 429 discussion</h1>
+        </div>
+        
+        <div class="question-section">
+            <div class="question-text">A company has developed an application that is running Windows Server on VMware vSphere VMs that the company hosts on premises. The application data is stored in a proprietary format that must be read through the application. The company manually provisioned the servers and the application.As part of its disaster recovery plan, the company wants the ability to host its application on AWS temporarily if the company's on-premises environment becomes unavailable. The company wants the application to return to on-premises hosting after a disaster recovery event is complete. The RPO is 5 minutes.Which solution meets these requirements with the LEAST amount of operational overhead?</div>
+            
+            <ul class="choices">
+                <li class="choice-item">
+                    <span class="choice-letter">A</span>
+                    Configure AWS DataSync. Replicate the data to Amazon Elastic Block Store (Amazon EBS) volumes. When the on-premises environment is unavailable, use AWS CloudFormation templates to provision Amazon EC2 instances and attach the EBS volumes.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">B</span>
+                    Configure AWS Elastic Disaster Recovery. Replicate the data to replication Amazon EC2 instances that are attached to Amazon Elastic Block Store (Amazon EBS) volumes. When the on-premises environment is unavailable, use Elastic Disaster Recovery to launch EC2 instances that use the replicated volumes.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">C</span>
+                    Provision an AWS Storage Gateway file gateway. Replicate the data to an Amazon S3 bucket. When the on-premises environment is unavailable, use AWS Backup to restore the data to Amazon Elastic Block Store (Amazon EBS) volumes and launch Amazon EC2 instances from these EBS volumes.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">D</span>
+                    Provision an Amazon FSx for Windows File Server file system on AWS. Replicate the data to the file system. When the on-premises environment is unavailable, use AWS CloudFormation templates to provision Amazon EC2 instances and use AWS::CloudFormation::Init commands to mount the Amazon FSx file shares.
+                </li>
+            </ul>
+            
+            <button class="toggle-btn" onclick="toggleAnswer()">正解を表示</button>
+        </div>
+        
+        <div class="answer-section hidden" id="answer-section">
+            <h2>正解</h2>
+            <div class="correct-answer">B</div>
+            
+            
+            <div class="vote-stats">
+                <strong>コミュニティ投票（計 16 票）</strong>
+                <div class="vote-bar">
+                    <div class="vote-segment" style="width: 93.75%; background: #007bff;">B (94%)</div><div class="vote-segment" style="width: 6.25%; background: #28a745;">D (6%)</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="comments-section hidden" id="comments-section">
+            <h2>主要なディスカッション</h2>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">HunkyBunky</span>
+                    
+                    <span class="comment-upvotes">👍 4 votes</span>
+                </div>
+                <div class="comment-content">Correct answer is B - because only this option will provide LEAST amount of operational overhead.
+
+A - is out, because DataSync can't replicate data to EBS volumes
+C - is out, because AWS Backup can't restore not managed data from S3 to EBS
+D - is out, because it is not provide a way HOW we will replicate data from on-premise to FSx. Also, it is require additional amount of operational overhead</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">TonytheTiger</span>
+                    
+                    <span class="comment-upvotes">👍 3 votes</span>
+                </div>
+                <div class="comment-content">Option B:  AWS Elastic Disaster Recovery performance Failover and Failback 
+
+https://docs.aws.amazon.com/drs/latest/userguide/failback-overview.html</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">Dgix</span>
+                    
+                    <span class="comment-upvotes">👍 3 votes</span>
+                </div>
+                <div class="comment-content">B is the correct answer. AWS Elastic Disaster Recovery aligns with low operational overhead and 5-minute RPO. It takes care of ongoing replication
+
+A: Incorrect, DataSync lacks comprehensive DR capabilities and requires manual provisioning.
+C: Incorrect, introduces complexity and doesn't support a 5-minute RPO for DR.
+D: Incorrect, FSx lacks automated DR solutions for VMware vSphere VMs, increasing overhead.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">AzureDP900</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">Option B is right 
+Elastic Disaster Recovery: This service allows you to create a replication instance in AWS, which can be used as a target for your application data. When your on-premises environment is unavailable, Elastic Disaster Recovery can automatically launch EC2 instances using the replicated volumes.
+Zero-configuration restore: With Elastic Disaster Recovery, there's no need to configure any additional services or scripts to restore the application. The service takes care of launching the correct EC2 instances with the necessary EBS volumes attached.
+RPO of 5 minutes: By replicating your data regularly (e.g., every 5 minutes), you can ensure that your RPO is met, and in case of a disaster, the replicated data will be available on AWS.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">TheCloudGuruu</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">Answer is B</div>
+            </div>
+        </div>
+    <div class="navigation">
+    <a href="question-428.html" class="nav-btn prev-btn">← 前の問題</a>
+    <a href="../index.html" class="nav-btn home-btn">📋 目次</a>
+    <a href="question-430.html" class="nav-btn next-btn">次の問題 →</a>
+</div>
+    </div>
+    
+    <script>
+        let answerVisible = false;
+        
+        function toggleAnswer() {
+            const answerSection = document.getElementById('answer-section');
+            const commentsSection = document.getElementById('comments-section');
+            const btn = document.querySelector('.toggle-btn');
+            const correctLetter = 'B';
+            
+            answerVisible = !answerVisible;
+            
+            if (answerVisible) {
+                answerSection.classList.remove('hidden');
+                commentsSection.classList.remove('hidden');
+                btn.textContent = '正解を隠す';
+                
+                // 正解の選択肢をハイライト
+                document.querySelectorAll('.choice-item').forEach(item => {
+                    const letter = item.querySelector('.choice-letter').textContent;
+                    if (letter === correctLetter) {
+                        item.classList.add('correct');
+                    }
+                });
+            } else {
+                answerSection.classList.add('hidden');
+                commentsSection.classList.add('hidden');
+                btn.textContent = '正解を表示';
+                
+                // ハイライトを削除
+                document.querySelectorAll('.choice-item').forEach(item => {
+                    item.classList.remove('correct');
+                });
+            }
+        }
+    </script>
+</body>
+</html>

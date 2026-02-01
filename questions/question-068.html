@@ -1,0 +1,436 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>SAP資格 topic 1 question 68 discussion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+        }
+        
+        .header h1 {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+        
+        .question-section {
+            padding: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .question-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            white-space: pre-line;
+        }
+        
+        .choices {
+            list-style: none;
+        }
+        
+        .choice-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-left: 4px solid #6c757d;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .choice-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .choice-item.correct {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+        
+        .choice-letter {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #6c757d;
+            color: white;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .choice-item.correct .choice-letter {
+            background: #28a745;
+        }
+        
+        .answer-section {
+            padding: 20px;
+            background: #e7f3ff;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .answer-section h2 {
+            color: #0066cc;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        .correct-answer {
+            font-size: 1.5em;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .vote-stats {
+            margin-top: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+        }
+        
+        .vote-bar {
+            display: flex;
+            height: 30px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .vote-segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .comments-section {
+            padding: 20px;
+        }
+        
+        .comments-section h2 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #495057;
+        }
+        
+        .comment {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .comment.highly-voted {
+            border-left-color: #ffc107;
+            background: #fff9e6;
+        }
+        
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .comment-username {
+            font-weight: bold;
+            color: #495057;
+        }
+        
+        .comment-badge {
+            background: #ffc107;
+            color: #000;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .comment-upvotes {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+        
+        .comment-content {
+            line-height: 1.8;
+            white-space: pre-line;
+        }
+        
+        .toggle-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 20px 0;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .toggle-btn:hover {
+            background: #0056b3;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 5px;
+            }
+            
+            .header {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.1em;
+            }
+            
+            .question-section, .answer-section, .comments-section {
+                padding: 15px;
+            }
+            
+            .choice-item {
+                padding: 12px;
+            }
+        }
+    
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-top: 2px solid #e9ecef;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            background: #0056b3;
+        }
+
+        .nav-btn.disabled {
+            background: #6c757d;
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-btn.home-btn {
+            background: #28a745;
+        }
+
+        .nav-btn.home-btn:hover {
+            background: #218838;
+        }
+
+        @media (max-width: 600px) {
+            .navigation {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    
+    </style>
+</head>
+<body>
+    <script>if(sessionStorage.getItem("authenticated")!=="true"){window.location.href="../index.html";}</script>
+    <div class="container">
+        <div class="header">
+            <h1>SAP資格 topic 1 question 68 discussion</h1>
+        </div>
+        
+        <div class="question-section">
+            <div class="question-text">A company runs a Python script on an Amazon EC2 instance to process data. The script runs every 10 minutes. The script ingests files from an Amazon S3 bucket and processes the files. On average, the script takes approximately 5 minutes to process each file The script will not reprocess a file that the script has already processed.The company reviewed Amazon CloudWatch metrics and noticed that the EC2 instance is idle for approximately 40% of the time because of the file processing speed. The company wants to make the workload highly available and scalable. The company also wants to reduce long-term management overhead.Which solution will meet these requirements MOST cost-effectively?</div>
+            
+            <ul class="choices">
+                <li class="choice-item">
+                    <span class="choice-letter">A</span>
+                    Migrate the data processing script to an AWS Lambda function. Use an S3 event notification to invoke the Lambda function to process the objects when the company uploads the objects.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">B</span>
+                    Create an Amazon Simple Queue Service (Amazon SQS) queue. Configure Amazon S3 to send event notifications to the SQS queue. Create an EC2 Auto Scaling group with a minimum size of one instance. Update the data processing script to poll the SQS queue. Process the S3 objects that the SQS message identifies.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">C</span>
+                    Migrate the data processing script to a container image. Run the data processing container on an EC2 instance. Configure the container to poll the S3 bucket for new objects and to process the resulting objects.
+                </li>
+                <li class="choice-item">
+                    <span class="choice-letter">D</span>
+                    Migrate the data processing script to a container image that runs on Amazon Elastic Container Service (Amazon ECS) on AWS Fargate. Create an AWS Lambda function that calls the Fargate RunTaskAPI operation when the container processes the file. Use an S3 event notification to invoke the Lambda function.
+                </li>
+            </ul>
+            
+            <button class="toggle-btn" onclick="toggleAnswer()">正解を表示</button>
+        </div>
+        
+        <div class="answer-section hidden" id="answer-section">
+            <h2>正解</h2>
+            <div class="correct-answer">A</div>
+            
+            
+            <div class="vote-stats">
+                <strong>コミュニティ投票（計 62 票）</strong>
+                <div class="vote-bar">
+                    <div class="vote-segment" style="width: 69.35483870967742%; background: #007bff;">A (69%)</div><div class="vote-segment" style="width: 30.64516129032258%; background: #28a745;">D (31%)</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="comments-section hidden" id="comments-section">
+            <h2>主要なディスカッション</h2>
+            <div class="comment highly-voted">
+                <div class="comment-header">
+                    <span class="comment-username">masetromain</span>
+                    <span class="comment-badge">Highly Voted</span>
+                    <span class="comment-upvotes">👍 21 votes</span>
+                </div>
+                <div class="comment-content">The correct answer is A, migrating the data processing script to an AWS Lambda function and using an S3 event notification to invoke the Lambda function to process the objects when the company uploads the objects. This solution meets the company's requirements of high availability and scalability, as well as reducing long-term management overhead, and is likely to be the most cost-effective option.
+
+Option B involves creating an SQS queue and configuring S3 to send event notifications to it. The data processing script would then poll the SQS queue and process the S3 objects that the SQS message identifies. While this option also provides high availability and scalability, it is less cost-effective than using Lambda, as it requires additional resources such as an SQS queue and an EC2 Auto Scaling group.</div>
+            </div>
+            <div class="comment highly-voted">
+                <div class="comment-header">
+                    <span class="comment-username">zhangyu20000</span>
+                    <span class="comment-badge">Highly Voted</span>
+                    <span class="comment-upvotes">👍 7 votes</span>
+                </div>
+                <div class="comment-content">A is correct, it provide HA, scale, less management. Task only need 5 minutes
+B: enen more complex
+C: container still run on one EC2, not scale
+d: need container, Farget and Lambda. Complex than A</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">covabix879</span>
+                    
+                    <span class="comment-upvotes">👍 5 votes</span>
+                </div>
+                <div class="comment-content">https://blogs.perficient.com/2021/06/17/aws-cost-analysis-comparing-lambda-ec2-fargate/ Even Fargate running continuosly is cheaper than Lambda running half of the time. So long running work load not cost effective with Lambda ( Every 10 minutes run for 5 minutes. So half of the time lambda is running) Therefore Fargate is the most cost-effective solution.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">red_panda</span>
+                    
+                    <span class="comment-upvotes">👍 3 votes</span>
+                </div>
+                <div class="comment-content">Ok i was thinking between A and D.
+I'm pretty sure which is D our answer, see the details.
+
+The requirements are:
+- COST as much as possible low
+- OPERATIONS as much as possible managed.
+
+So at the first reading, the A option seems to be the correct option (because it's totally AWS managed), but here we're totally forgot the cost.
+Running a Lambda function, for 5 minutes every 10 minutes, it's very very more expensive than a simple ECS task running continously.
+
+Finally, ECS in fargate mode is totally AWS managed, so we will have lower cost, and a serverless and HA environment, which auto-scale if we need more processing at time.
+
+For me, option D is the correct answer.</div>
+            </div>
+            <div class="comment">
+                <div class="comment-header">
+                    <span class="comment-username">zolthar_z</span>
+                    
+                    <span class="comment-upvotes">👍 2 votes</span>
+                </div>
+                <div class="comment-content">A, the company wants to reduce management overhead not costs, we should stay with the question requirement, it doesn't said anything about cost, probably D will be cheaper but  the solution must resolve the question necessity and is reduce long-term management overhead</div>
+            </div>
+        </div>
+    <div class="navigation">
+    <a href="question-067.html" class="nav-btn prev-btn">← 前の問題</a>
+    <a href="../index.html" class="nav-btn home-btn">📋 目次</a>
+    <a href="question-069.html" class="nav-btn next-btn">次の問題 →</a>
+</div>
+    </div>
+    
+    <script>
+        let answerVisible = false;
+        
+        function toggleAnswer() {
+            const answerSection = document.getElementById('answer-section');
+            const commentsSection = document.getElementById('comments-section');
+            const btn = document.querySelector('.toggle-btn');
+            const correctLetter = 'A';
+            
+            answerVisible = !answerVisible;
+            
+            if (answerVisible) {
+                answerSection.classList.remove('hidden');
+                commentsSection.classList.remove('hidden');
+                btn.textContent = '正解を隠す';
+                
+                // 正解の選択肢をハイライト
+                document.querySelectorAll('.choice-item').forEach(item => {
+                    const letter = item.querySelector('.choice-letter').textContent;
+                    if (letter === correctLetter) {
+                        item.classList.add('correct');
+                    }
+                });
+            } else {
+                answerSection.classList.add('hidden');
+                commentsSection.classList.add('hidden');
+                btn.textContent = '正解を表示';
+                
+                // ハイライトを削除
+                document.querySelectorAll('.choice-item').forEach(item => {
+                    item.classList.remove('correct');
+                });
+            }
+        }
+    </script>
+</body>
+</html>
